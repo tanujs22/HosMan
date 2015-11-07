@@ -15,4 +15,8 @@ Route::get('login',array('uses' => 'LoginController@showLogin'));
 Route::post('login',array('uses' => 'LoginController@doLogin'));
 Route::get('admin',array('uses' => 'LoginController@loggedIn'));
 Route::get('logout',array('uses' => 'LoginController@logOut'));
+Route::get('addhospital',array('uses' => 'HospitalController@addHospital'));
+Route::post('addhospital',array('uses' => 'HospitalController@addToDb'));
+Route::get('updatedetails',array('uses' => 'HospitalController@getDetails'));
+Route::post('updatedetails',array('uses' => 'HospitalController@postDetails'));
 

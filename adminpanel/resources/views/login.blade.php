@@ -32,15 +32,13 @@
 	  
 	  
       <div class="login-box-body">
-	  <p>
-	  <font color="#600000">
-	  <b>
-		{!! $errors->first('user_name') !!}
-		<br>
-		{!! $errors->first('password') !!}
-		</b>
-	  </font>
-	  </p>
+	  @if($errors->any())
+    <div class="alert alert-danger">
+        @foreach($errors->all() as $error)
+            <p>{!! $error !!}</p>
+        @endforeach
+    </div>
+	@endif
         <p class="login-box-msg">Sign in to start your session</p>
         {!! Form::open(array('url' => 'login')) !!}
           <div class="form-group has-feedback">

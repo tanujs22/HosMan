@@ -3,7 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 2 | Dashboard</title>
+    <title>Dashboard</title>
+
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -65,14 +66,14 @@
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <img src="public/dist/img/avatar3.png" class="user-image" alt="User Image">
-                  <span class="hidden-xs">{!! $name !!}</span>
+                  <span class="hidden-xs">{!! Auth::user()->first_name.' '.Auth::user()->last_name !!}</span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
                   <li class="user-header">
                     <img src="public/dist/img/avatar3.png" class="img-circle" alt="User Image">
                     <p>
-					{!! $name !!}
+					{!! Auth::user()->first_name.' '.Auth::user()->last_name !!}
                       <small>Marketing Team Member</small>
                     </p>
                   </li>
@@ -101,7 +102,7 @@
               <img src="public/dist/img/avatar3.png" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-              <p>{!! $name !!}</p>
+              <p>{!! Auth::user()->first_name.' '.Auth::user()->last_name !!}</p>
               <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
           </div>
@@ -111,16 +112,16 @@
             <li class="header">MAIN NAVIGATION</li>
             <li>
               <a href="admin">
-                <i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
+                <i class="fa fa-dashboard"></i> <span>Dashboard</span> 
               </a>
             </li>
             <li>
               <a href="addhospital">
-                <i class="fa fa-th"></i> <span>Add Hospital</span> <small class="label pull-right bg-green">new</small>
+                <i class="fa fa-th"></i> <span>Add Hospital</span> 
               </a>
             </li>
             <li>
-              <a href="#">
+              <a href="updatedetails">
                 <i class="fa fa-th"></i>
                 <span>Update Hospital Details</span>
                 
@@ -130,14 +131,14 @@
               <a href="#">
                 <i class="fa fa-th"></i>
                 <span>View Hospital</span>
-                <i class="fa fa-angle-left pull-right"></i>
+                
               </a>
             </li>
 			<li>
               <a href="#">
                 <i class="fa fa-th"></i>
                 <span>View Doctors</span>
-                <i class="fa fa-angle-left pull-right"></i>
+                
               </a>
             </li>
 			</ul>
@@ -150,86 +151,63 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-            Dashboard
-            <small>Control panel</small>
+            Updated Hospital Details
+            <small>Please fill in the details to be updated</small>
           </h1>
           <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i>Dashboard</a></li>
+            <li><a href="admin"><i class="fa fa-dashboard"></i>Dashboard</a></li>
             
           </ol>
         </section>
 
         <!-- Main content -->
         <section class="content">
-			@if(Session::has('flash_message'))
-			<div class="alert alert-success">
-				{!! Session::get('flash_message') !!}
-			</div>
-			@endif
           <!-- Small boxes (Stat box) -->
           <div class="row">
-            <div class="col-lg-3 col-xs-6">
-              <!-- small box -->
-              <div class="small-box bg-aqua">
-                <div class="inner">
-				<a href="addhospital">  
-                  <h3>Add </h3>
-				  <h3>Hospital</h3>
-				  </a>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-bag"></i>
-                </div>
-				<a href="addhospital">
-				<p class="small-box-footer">To add a new hospital entry <i class="fa fa-arrow-circle-right"></i></p>
-				</a>
-              </div>
-			  
-            </div><!-- ./col -->
-            <div class="col-lg-3 col-xs-6">
-              <!-- small box -->
-              <div class="small-box bg-green">
-                <div class="inner">
-				<a href="updatedetails">
-                  <h3>Update</h3>
-                  <h3>Details</h3>
-				  </a>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-stats-bars"></i>
-                </div>
-                <a href="updatedetails" class="small-box-footer">To update hospital entries<i class="fa fa-arrow-circle-right"></i></a>
-              </div>
-            </div><!-- ./col -->
-            <div class="col-lg-3 col-xs-6">
-              <!-- small box -->
-              <div class="small-box bg-yellow">
-                <div class="inner">
-                  <h3>View</h3>
-				  <h3>Hospitals</h3>
-                  
-                </div>
-                <div class="icon">
-                  <i class="ion ion-person-add"></i>
-                </div>
-                <a href="#" class="small-box-footer">To view registered hospitals <i class="fa fa-arrow-circle-right"></i></a>
-              </div>
-            </div><!-- ./col -->
-            <div class="col-lg-3 col-xs-6">
-              <!-- small box -->
-              <div class="small-box bg-red">
-                <div class="inner">
-                  <h3>View</h3>
-				  <h3>Doctors</h3>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-pie-graph"></i>
-                </div>
-                <a href="#" class="small-box-footer">To view registered Hospitals<i class="fa fa-arrow-circle-right"></i></a>
-              </div>
-            </div><!-- ./col -->
+            
+            
           </div><!-- /.row -->
-          
+          {!! Form::open(array('url' => 'updatedetails')) !!}
+          <div class="form-group has-feedback">
+		  @if($errors->any())
+			<div class="alert alert-danger">
+				@foreach($errors->all() as $error)
+					<p>{!! $error !!}</p>
+				@endforeach
+			</div>
+			@endif
+			
+			<label> SELECT THE HOSPITAL</label>
+			
+			<br>
+            <p>
+				@if($hospitals)
+				<label> SELECT THE HOSPITAL</label>
+				<select class="form-control">
+					@foreach($hospitals as $hospital)
+						<option name="hospital_id" value="{!!$hospital->id!!}">{!!'Hospital ID: '.$hospital->id.' | Hospital Name: '.$hospital->hospital_name!!}</option>
+					@endforeach
+				</select>
+				@endif
+			</p>
+			<p>
+				@if($hospitals)
+				<label> SELECT THE HOSPITAL</label>
+				<select class="form-control">
+					@foreach($hospitals as $hospital)
+						<option name="hospital_id" value="{!!$hospital->id!!}">{!!'Hospital ID: '.$hospital->id.' | Hospital Name: '.$hospital->hospital_name!!}</option>
+					@endforeach
+				</select>
+				@endif
+            </p>
+			</div>
+			<center>
+            <div class="col-xs-4">
+              <button type="submit" class="btn btn-primary btn-block btn-flat">Edit Details</button>
+            </div>
+			</center><!-- /.col -->
+          </div>
+        {!! Form::close() !!}
 
         </section><!-- /.content -->
       </div><!-- /.content-wrapper -->
