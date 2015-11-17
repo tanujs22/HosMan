@@ -1,0 +1,17 @@
+//Laravel 5.1
+
+1.Create a database to store login credential data and hospital information
+	start your local server >> open http://localhost/phpmyadmin
+	create a database named adminpanel.
+2.Change the database environment variable.(~\adminpanel\.env)
+	change -> DB_USERNAME=root
+		  DB_PASSWORD=''
+	as per your configuration.
+3.Creating tables in database -admin panel
+	right click on adminpanel ->click on 'use composer here'
+	type: php artisan migrate <enter>
+	type: php artisan db:seed <enter>
+//After this your login password to the adminpanel will be (username: sherlock
+//							    password: password), this has been added by seeding user table.
+
+4.Now, you are ready to go: http://localhost/adminpanel/login	
