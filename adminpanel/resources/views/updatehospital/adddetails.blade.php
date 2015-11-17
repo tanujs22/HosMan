@@ -66,14 +66,14 @@
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <img src="public/dist/img/avatar3.png" class="user-image" alt="User Image">
-                  <span class="hidden-xs">{!! $name !!}</span>
+                  <span class="hidden-xs">{!! Auth::user()->first_name.' '.Auth::user()->last_name !!}</span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
                   <li class="user-header">
                     <img src="public/dist/img/avatar3.png" class="img-circle" alt="User Image">
                     <p>
-					{!! $name !!}
+					{!! Auth::user()->first_name.' '.Auth::user()->last_name !!}
                       <small>Marketing Team Member</small>
                     </p>
                   </li>
@@ -102,7 +102,7 @@
               <img src="public/dist/img/avatar3.png" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-              <p>{!! $name !!}</p>
+              <p>{!! Auth::user()->first_name.' '.Auth::user()->last_name !!}</p>
               <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
           </div>
@@ -112,16 +112,16 @@
             <li class="header">MAIN NAVIGATION</li>
             <li>
               <a href="admin">
-                <i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
+                <i class="fa fa-dashboard"></i> <span>Dashboard</span> 
               </a>
             </li>
             <li>
               <a href="addhospital">
-                <i class="fa fa-th"></i> <span>Add Hospital</span> <small class="label pull-right bg-green">new</small>
+                <i class="fa fa-th"></i> <span>Add Hospital</span> 
               </a>
             </li>
             <li>
-              <a href="udatedetails">
+              <a href="updatedetails">
                 <i class="fa fa-th"></i>
                 <span>Update Hospital Details</span>
                 
@@ -131,6 +131,20 @@
               <a href="#">
                 <i class="fa fa-th"></i>
                 <span>View Hospital</span>
+                
+              </a>
+            </li>
+			<li>
+              <a href="adddoctor">
+                <i class="fa fa-th"></i>
+                <span>Add Doctor</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+            </li>
+			<li>
+              <a href="#">
+                <i class="fa fa-th"></i>
+                <span>Update Doctor Details</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
             </li>
@@ -138,7 +152,7 @@
               <a href="#">
                 <i class="fa fa-th"></i>
                 <span>View Doctors</span>
-                <i class="fa fa-angle-left pull-right"></i>
+                
               </a>
             </li>
 			</ul>
@@ -151,8 +165,8 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-            Hospital Details
-            <small>Please fill in the details</small>
+            Updated Hospital Details
+            <small>Please fill in the details to be updated</small>
           </h1>
           <ol class="breadcrumb">
             <li><a href="admin"><i class="fa fa-dashboard"></i>Dashboard</a></li>
@@ -167,71 +181,34 @@
             
             
           </div><!-- /.row -->
-          {!! Form::open(array('url' => 'addhospital')) !!}
-			<div class="form-group has-feedback">
-				  @if($errors->any())
-				<div class="alert alert-danger">
+          {!! Form::open(array('url' => 'updatedetails')) !!}
+          <div class="form-group has-feedback">
+		  @if($errors->any())
+			<div class="alert alert-danger">
 				@foreach($errors->all() as $error)
 					<p>{!! $error !!}</p>
 				@endforeach
-				</div>
+			</div>
+			@endif
+			
+			
+			
+			<br>
+            <p>
+				@if($hospitals)
+				<label> SELECT THE HOSPITAL</label>
+				<select class="form-control" name="hospital_id">
+					@foreach($hospitals as $hospital)
+						<option  value="{!!$hospital->id!!}">{!!'Hospital ID: '.$hospital->id.' | Hospital Name: '.$hospital->hospital_name!!}</option>
+					@endforeach
+				</select>
 				@endif
-            <p>
-				<center>
-				{!! Form::text('hospital_name',null,array('class' => 'form-control','placeholder'=>'Hospital Name'))!!}
-				</center>
 			</p>
-            
-			</div>
-			<div class="form-group has-feedback">
-            <p>
-				<center>
-				{!! Form::textarea('hospital_address', null, array('class' => 'form-control','placeholder'=>'Hospital Address')) !!}
-				</center>
-			</p>
-            
-			</div>
-			<div class="form-group has-feedback">
-            <p>
-				<center>
-				{!! Form::text('contact_number',null,array('class' => 'form-control','placeholder'=>'Contact Number'))!!}
-				</center>
-			</p>
-            
-			</div>
-			<div class="form-group has-feedback">
-            <p>
-				<center>
-				{!! Form::text('latitude',null,array('class' => 'form-control','placeholder'=>'Latitude'))!!}
-				</center>
-			</p>
-            
-			</div>
-			<div class="form-group has-feedback">
-            <p>
-				<center>
-				{!! Form::text('longitude',null,array('class' => 'form-control','placeholder'=>'Longitude'))!!}
-				</center>
-			</p>
-            
-			</div>
-			<div class="form-group has-feedback">
-            <p>
-				
-				{!!Form::label('status','Status of the Hospital :')!!}
-				<br>
-				Active:
-				{!! Form::radio('status', 'active',true) !!}
-				<br>
-				Inactive:
-				{!! Form::radio('status', 'inactive', false) !!}
-				
-			</p>
-            
+			
 			</div>
 			<center>
             <div class="col-xs-4">
-              <button type="submit" class="btn btn-primary btn-block btn-flat">Add Details</button>
+              <button type="submit" class="btn btn-primary btn-block btn-flat">Edit Details</button>
             </div>
 			</center><!-- /.col -->
           </div>

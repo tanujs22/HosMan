@@ -112,16 +112,16 @@
             <li class="header">MAIN NAVIGATION</li>
             <li>
               <a href="admin">
-                <i class="fa fa-dashboard"></i> <span>Dashboard</span> 
+                <i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
             </li>
             <li>
               <a href="addhospital">
-                <i class="fa fa-th"></i> <span>Add Hospital</span> 
+                <i class="fa fa-th"></i> <span>Add Hospital</span> <small class="label pull-right bg-green">new</small>
               </a>
             </li>
             <li>
-              <a href="updatedetails">
+              <a href="udatedetails">
                 <i class="fa fa-th"></i>
                 <span>Update Hospital Details</span>
                 
@@ -131,14 +131,28 @@
               <a href="#">
                 <i class="fa fa-th"></i>
                 <span>View Hospital</span>
-                
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+            </li>
+			<li>
+              <a href="adddoctor">
+                <i class="fa fa-th"></i>
+                <span>Add Doctor</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+            </li>
+			<li>
+              <a href="updatedoctor">
+                <i class="fa fa-th"></i>
+                <span>Update Doctor Details</span>
+                <i class="fa fa-angle-left pull-right"></i>
               </a>
             </li>
 			<li>
               <a href="#">
                 <i class="fa fa-th"></i>
                 <span>View Doctors</span>
-                
+                <i class="fa fa-angle-left pull-right"></i>
               </a>
             </li>
 			</ul>
@@ -151,8 +165,8 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-            Updated Hospital Details
-            <small>Please fill in the details to be updated</small>
+            Doctor Details
+            <small>Please fill in the details</small>
           </h1>
           <ol class="breadcrumb">
             <li><a href="admin"><i class="fa fa-dashboard"></i>Dashboard</a></li>
@@ -167,43 +181,80 @@
             
             
           </div><!-- /.row -->
-          {!! Form::open(array('url' => 'updatedetails')) !!}
-          <div class="form-group has-feedback">
-		  @if($errors->any())
-			<div class="alert alert-danger">
+          {!! Form::open(array('url' => 'adddoctor')) !!}
+			<div class="form-group has-feedback">
+				  @if($errors->any())
+				<div class="alert alert-danger">
 				@foreach($errors->all() as $error)
 					<p>{!! $error !!}</p>
 				@endforeach
-			</div>
-			@endif
-			
-			<label> SELECT THE HOSPITAL</label>
-			
-			<br>
+				</div>
+				@endif
+				
             <p>
-				@if($hospitals)
-				<label> SELECT THE HOSPITAL</label>
-				<select class="form-control">
-					@foreach($hospitals as $hospital)
-						<option name="hospital_id" value="{!!$hospital->id!!}">{!!'Hospital ID: '.$hospital->id.' | Hospital Name: '.$hospital->hospital_name!!}</option>
-					@endforeach
-				</select>
-				@endif
+				<label>Doctor Name</label>
+				<center>
+				{!! Form::text('doctor_name',null,array('class' => 'form-control'))!!}
+				</center>
 			</p>
-			<p>
-				@if($hospitals)
-				<label> SELECT THE HOSPITAL</label>
-				<select class="form-control">
+            
+			</div>
+			<div class="form-group has-feedback">
+            <p>
+				<label>Specialisation</label>
+				<center>
+				{!! Form::text('specialisation', null, array('class' => 'form-control')) !!}
+				</center>
+			</p>
+            
+			</div>
+			<div class="form-group has-feedback">
+            <p>
+				<label>Address</label>
+				<center>
+				{!! Form::textarea('address', null, array('class' => 'form-control')) !!}
+				</center>
+			</p>
+            
+			</div>
+			<div class="form-group has-feedback">
+            <p>
+				<label>Contact Number</label>
+				<center>
+				{!! Form::text('contact_number',null,array('class' => 'form-control'))!!}
+				</center>
+			</p>
+            
+			</div>
+			<div class="form-group has-feedback">
+            @if($hospitals)
+				<label>Hospital</label>
+				<select class="form-control" name="associated_with">
 					@foreach($hospitals as $hospital)
-						<option name="hospital_id" value="{!!$hospital->id!!}">{!!'Hospital ID: '.$hospital->id.' | Hospital Name: '.$hospital->hospital_name!!}</option>
+						<option  value="{!!$hospital->id!!}">{!!'Hospital ID: '.$hospital->id.' | Hospital Name: '.$hospital->hospital_name!!}</option>
 					@endforeach
 				</select>
 				@endif
-            </p>
+            
+			</div>
+			
+			<div class="form-group has-feedback">
+            <p>
+				
+				{!!Form::label('status','Status of the Doctor :')!!}
+				<br>
+				Active:
+				{!! Form::radio('status', 'active',true) !!}
+				<br>
+				Inactive:
+				{!! Form::radio('status', 'inactive', false) !!}
+				
+			</p>
+            
 			</div>
 			<center>
             <div class="col-xs-4">
-              <button type="submit" class="btn btn-primary btn-block btn-flat">Edit Details</button>
+              <button type="submit" class="btn btn-primary btn-block btn-flat">Add Details</button>
             </div>
 			</center><!-- /.col -->
           </div>

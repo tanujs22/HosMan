@@ -3,7 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 2 | Dashboard</title>
+    <title>Dashboard</title>
+
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -141,9 +142,9 @@
               </a>
             </li>
 			<li>
-              <a href="updatedoctor">
+              <a href="#">
                 <i class="fa fa-th"></i>
-                <span>Update Doctor Details</span>
+                <span>Update Doctor</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
             </li>
@@ -164,119 +165,102 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-            Dashboard
-            <small>Control panel</small>
+            Hospital Details
+            <small>Please fill in the details</small>
           </h1>
           <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i>Dashboard</a></li>
+            <li><a href="admin"><i class="fa fa-dashboard"></i>Dashboard</a></li>
             
           </ol>
         </section>
 
         <!-- Main content -->
         <section class="content">
-			@if(Session::has('flash_message'))
-			<div class="alert alert-success">
-				{!! Session::get('flash_message') !!}
-			</div>
-			@endif
           <!-- Small boxes (Stat box) -->
           <div class="row">
-            <div class="col-lg-3 col-xs-6">
-              <!-- small box -->
-              <div class="small-box bg-aqua">
-                <div class="inner">
-				<a href="addhospital">  
-                  <h3>Add </h3>
-				  <h3>Hospital</h3>
-				  </a>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-bag"></i>
-                </div>
-				<a href="addhospital">
-				<p class="small-box-footer">To add a new hospital entry <i class="fa fa-arrow-circle-right"></i></p>
-				</a>
-              </div>
-			  
-            </div><!-- ./col -->
-            <div class="col-lg-3 col-xs-6">
-              <!-- small box -->
-              <div class="small-box bg-green">
-                <div class="inner">
-				<a href="updatedetails">
-                  <h3>Update</h3>
-                  <h3>Details</h3>
-				  </a>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-stats-bars"></i>
-                </div>
-                <a href="updatedetails" class="small-box-footer">To update hospital entries<i class="fa fa-arrow-circle-right"></i></a>
-              </div>
-            </div><!-- ./col -->
-            <div class="col-lg-3 col-xs-6">
-              <!-- small box -->
-              <div class="small-box bg-yellow">
-                <div class="inner">
-				<a href="viewhospital">
-                  <h3>View</h3>
-				  <h3>Hospitals</h3>
-                  </a>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-person-add"></i>
-                </div>
-                <a href="viewhospital" class="small-box-footer">To view registered hospitals <i class="fa fa-arrow-circle-right"></i></a>
-              </div>
-            </div><!-- ./col -->
-			<div class="col-lg-3 col-xs-6">
-              <!-- small box -->
-              <div class="small-box bg-yellow">
-                <div class="inner">
-				<a href="adddoctor">
-                  <h3>Add</h3>
-				  <h3>Doctor</h3>
-                 </a> 
-                </div>
-                <div class="icon">
-                  <i class="ion ion-person-add"></i>
-                </div>
-                <a href="adddoctor" class="small-box-footer">To add a new doctor entry <i class="fa fa-arrow-circle-right"></i></a>
-              </div>
-            </div><!-- ./col -->
-			<div class="col-lg-3 col-xs-6">
-              <!-- small box -->
-              <div class="small-box bg-yellow">
-                <div class="inner">
-				  <a href="updatedoctor">
-                  <h3>Update</h3>
-				  <h3>Doctor</h3>
-                  </a>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-person-add"></i>
-                </div>
-                <a href="updatedoctor" class="small-box-footer">To update doctor entry<i class="fa fa-arrow-circle-right"></i></a>
-              </div>
-            </div><!-- ./col -->
-            <div class="col-lg-3 col-xs-6">
-              <!-- small box -->
-              <div class="small-box bg-red">
-                <div class="inner">
-				<a gref="viewdoctors">
-                  <h3>View</h3>
-				  <h3>Doctors</h3>
-				  </a>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-pie-graph"></i>
-                </div>
-                <a href="viewdoctors" class="small-box-footer">To view registered Hospitals<i class="fa fa-arrow-circle-right"></i></a>
-              </div>
-            </div><!-- ./col -->
+            
+            
           </div><!-- /.row -->
-          
+          {!! Form::open(array('url' => 'addhospital')) !!}
+			<div class="form-group has-feedback">
+				  @if($errors->any())
+				<div class="alert alert-danger">
+				@foreach($errors->all() as $error)
+					<p>{!! $error !!}</p>
+				@endforeach
+				</div>
+				@endif
+            <p>
+				<label>Hospital Name</label>
+				<center>
+				{!! Form::text('hospital_name',null,array('class' => 'form-control'))!!}
+				</center>
+			</p>
+			<p>
+				<label>Bed Count</label>
+				<center>
+				{!! Form::text('bed_count',null,array('class' => 'form-control'))!!}
+				</center>
+			</p>
+            
+			</div>
+			<div class="form-group has-feedback">
+            <p>
+				<label>Hospital Address</label>
+				<center>
+				{!! Form::textarea('hospital_address', null, array('class' => 'form-control')) !!}
+				</center>
+			</p>
+            
+			</div>
+			<div class="form-group has-feedback">
+            <p>
+				<label>Contact Number</label>
+				<center>
+				{!! Form::text('contact_number',null,array('class' => 'form-control'))!!}
+				</center>
+			</p>
+            
+			</div>
+			<div class="form-group has-feedback">
+            <p>
+				<label>Latitude</label>
+				<center>
+				{!! Form::text('latitude',null,array('class' => 'form-control'))!!}
+				</center>
+			</p>
+            
+			</div>
+			<div class="form-group has-feedback">
+            <p>
+				<label>Longitude</label>
+				<center>
+				{!! Form::text('longitude',null,array('class' => 'form-control'))!!}
+				</center>
+			</p>
+            
+			</div>
+			<div class="form-group has-feedback">
+            <p>
+				
+				{!!Form::label('status','Status of the Hospital :')!!}
+				<br>
+				Active:
+				{!! Form::radio('status', 'active',true) !!}
+				<br>
+				Inactive:
+				{!! Form::radio('status', 'inactive', false) !!}
+				
+			</p>
+            
+			</div>
+			<center>
+            <div class="col-xs-4">
+              <button type="submit" class="btn btn-primary btn-block btn-flat">Add Details</button>
+            </div>
+			</center><!-- /.col -->
+          </div>
+        {!! Form::close() !!}
 
         </section><!-- /.content -->
       </div><!-- /.content-wrapper -->

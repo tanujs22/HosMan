@@ -135,6 +135,20 @@
               </a>
             </li>
 			<li>
+              <a href="adddoctor">
+                <i class="fa fa-th"></i>
+                <span>Add Doctor</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+            </li>
+			<li>
+              <a href="updatedoctor">
+                <i class="fa fa-th"></i>
+                <span>Update Doctor Details</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+            </li>
+			<li>
               <a href="#">
                 <i class="fa fa-th"></i>
                 <span>View Doctors</span>
@@ -167,7 +181,7 @@
             
             
           </div><!-- /.row -->
-          {!! Form::open(array('url' => 'updatedetails')) !!}
+          {!! Form::open(array('url' => 'editdoctor')) !!}
           <div class="form-group has-feedback">
 		  @if($errors->any())
 			<div class="alert alert-danger">
@@ -177,29 +191,78 @@
 			</div>
 			@endif
 			
-			<label> <t> SELECT THE HOSPITAL</label>
+			<label> <t> EDIT DETAILS</label>
 			
 			<br>
-            <p>
+            <p>	
+			<div class="form-group has-feedback">
+				<input type="hidden" name="doctor_id" value="{!!$prevdetails->id!!}">
+				<label>Doctor Name</label>
+				<br>
+				<input type="text" name="doctor_name" value="{!!$prevdetails->doctor_name!!}">
+				<br>
+				<label>Specialisation</label>
+				<br>
+				<input type="text" name="specialisation" value="{!!$prevdetails->specialisation!!}">
+				<br>
+				<label>Address</label>
+				<br>
+				<input type="textarea" name="address" value="{!!$prevdetails->address!!}">
+				<br>
+				<label>Contact Number</label>
+				<br>
+				<input type="text" name="contact_number" value="{!!$prevdetails->contact_number!!}">
+				<br>
+				
+				<div class="form-group has-feedback">
 				@if($hospitals)
-				<select class="form-control">
+				<label>Hospital</label>
+				<select class="form-control" name="associated_with">
 					@foreach($hospitals as $hospital)
-						<option name="hospital_id" value="{!!$hospital->id!!}">{!!'Hospital ID: '.$hospital->id.' | Hospital Name: '.$hospital->hospital_name!!}</option>
+						@if($prevdetails->associated_with==$hospital->id)
+							<option  value="{!!$hospital->id!!}" selected="selected">{!!'Hospital ID: '.$hospital->id.' | Hospital Name: '.$hospital->hospital_name!!}</option>
+						@endif
+						@if($prevdetails->associated_with!=$hospital->id)
+							<option  value="{!!$hospital->id!!}">{!!'Hospital ID: '.$hospital->id.' | Hospital Name: '.$hospital->hospital_name!!}</option>
+						@endif
 					@endforeach
 				</select>
 				@endif
+            
+			</div>
+				<label>Status</label>
+				<br>
+				Active:
+				@if($prevdetails->status == 'active')
+					{!! Form::radio('status', 'active',true) !!}
+				@endif
+				@if($prevdetails->status == 'inactive')
+					{!! Form::radio('status', 'active') !!}
+				@endif
+				<br>
+				Inactive:
+				@if($prevdetails->status == 'active')
+					{!! Form::radio('status', 'inactive') !!}
+				@endif
+				@if($prevdetails->status == 'inactive')
+					{!! Form::radio('status', 'inactive',true) !!}
+				@endif
+				
+			
+            
+			</div>
 			</p>
             
 			</div>
 			<center>
             <div class="col-xs-4">
-              <button type="submit" class="btn btn-primary btn-block btn-flat">Edit Details</button>
+              <button type="submit" class="btn btn-primary btn-block btn-flat">Save Details</button>
             </div>
 			</center><!-- /.col -->
           </div>
         {!! Form::close() !!}
 
-        </section><!-- /.content -->
+        
       </div><!-- /.content-wrapper -->
       <footer class="main-footer">
         <div class="pull-right hidden-xs">
