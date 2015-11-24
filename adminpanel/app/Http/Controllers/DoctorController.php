@@ -67,7 +67,7 @@ class DoctorController extends Controller {
 				$associated_with = (Input::get('associated_with'));
 				$status=Input::get('status');
 				$added_by=Auth::user()->id;
-				DB::insert('insert into doctors (doctor_name,specialisation,address,contact_number,associated_with,status,added_by) values (?,?,?,?,?,?,?)', [$doctor_name,$specialisation, $address,$contact_number,$associated_with,$status,$added_by]);
+				DB::insert('insert into doctors (doctor_name,specialisation,address,contact_number,associated_with,status,added_by,created_at) values (?,?,?,?,?,?,?,?)', [$doctor_name,$specialisation, $address,$contact_number,$associated_with,$status,$added_by,date('Y-m-d H:i:s')]);
 	//			echo $hospital_name.' '.$latitude.' '.$status;
 				Session::flash('flash_message', 'Doctor Details Sucessfully added!');
 				return Redirect::to('admin');
@@ -139,7 +139,7 @@ class DoctorController extends Controller {
 				$associated_with = (Input::get('associated_with'));
 				$status=Input::get('status');
 		#		echo "$hospital_address";
-				$affected = DB::update('update doctors set doctor_name=?,address=?,contact_number=?,specialisation=?,associated_with=?,status=? where id = ?', [$doctor_name,$address,$contact_number,$specialisation,$associated_with,$status,intval($doctor_id)]);
+				$affected = DB::update('update doctors set doctor_name=?,address=?,contact_number=?,specialisation=?,associated_with=?,status=?,updated_at=? where id = ?', [$doctor_name,$address,$contact_number,$specialisation,$associated_with,$status,date('Y-m-d H:i:s'),intval($doctor_id)]);
 				Session::flash('flash_message', 'Doctor Details Sucessfully added!');
 				return Redirect::to('admin');
 			}
