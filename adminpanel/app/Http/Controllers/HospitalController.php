@@ -68,7 +68,7 @@ class HospitalController extends Controller {
 				$longitude = (Input::get('longitude'));
 				$status=Input::get('status');
 				$added_by=Auth::user()->id;
-				DB::insert('insert into hospital (hospital_name,bed_count, hospital_address,contact_number,latitude,longitude,status,added_by) values (?,?, ?,?,?,?,?,?)', [$hospital_name, $bed_count,$hospital_address,$contact_number,$latitude,$longitude,$status,$added_by]);
+				DB::insert('insert into hospital (hospital_name,bed_count, hospital_address,contact_number,latitude,longitude,status,added_by,created_at) values (?,?, ?,?,?,?,?,?,?)', [$hospital_name, $bed_count,$hospital_address,$contact_number,$latitude,$longitude,$status,$added_by,date('Y-m-d H:i:s')]);
 	//			echo $hospital_name.' '.$latitude.' '.$status;
 				Session::flash('flash_message', 'Hospital Details Sucessfully added!');
 				return Redirect::to('admin');
@@ -141,7 +141,7 @@ class HospitalController extends Controller {
 				$longitude = (Input::get('longitude'));
 				$status=Input::get('status');
 				echo "$hospital_address";
-				$affected = DB::update('update hospital set hospital_name=?,bed_count=?,hospital_address=?,contact_number=?,latitude=?,longitude=?,status=? where id = ?', [$hospital_name,$bed_count,$hospital_address,$contact_number,$latitude,$longitude,$status,intval($hospital_id)]);
+				$affected = DB::update('update hospital set hospital_name=?,bed_count=?,hospital_address=?,contact_number=?,latitude=?,longitude=?,status=?,updated_at=? where id = ?', [$hospital_name,$bed_count,$hospital_address,$contact_number,$latitude,$longitude,$status,date('Y-m-d H:i:s'),intval($hospital_id)]);
 				Session::flash('flash_message', 'Hospital Details Sucessfully added!');
 				return Redirect::to('admin');
 			}
