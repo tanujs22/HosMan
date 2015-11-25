@@ -127,7 +127,7 @@
               </a>
             </li>
             <li>
-              <a href="#">
+              <a href="viewhospital">
                 <i class="fa fa-th"></i>
                 <span>View Hospital</span>
                 <i class="fa fa-angle-left pull-right"></i>
@@ -148,7 +148,7 @@
               </a>
             </li>
 			<li>
-              <a href="#">
+              <a href="viewdoctors">
                 <i class="fa fa-th"></i>
                 <span>View Doctors</span>
                 <i class="fa fa-angle-left pull-right"></i>

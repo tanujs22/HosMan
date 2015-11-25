@@ -3,8 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Dashboard</title>
-
+    <title>AdminLTE 2 | Dashboard</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -66,15 +65,15 @@
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <img src="dist/img/avatar3.png" class="user-image" alt="User Image">
-                  <span class="hidden-xs">{!! Auth::user()->first_name.' '.Auth::user()->last_name !!}</span>
+                  <span class="hidden-xs">{!! $name !!}</span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
                   <li class="user-header">
                     <img src="dist/img/avatar3.png" class="img-circle" alt="User Image">
                     <p>
-					{!! Auth::user()->first_name.' '.Auth::user()->last_name !!}
-                      <small>Marketing Team Member</small>
+					{!! $name !!}
+                      <small>Root Team Member</small>
                     </p>
                   </li>
                   
@@ -102,7 +101,7 @@
               <img src="dist/img/avatar3.png" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-              <p>{!! Auth::user()->first_name.' '.Auth::user()->last_name !!}</p>
+              <p>{!! $name !!}</p>
               <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
           </div>
@@ -116,45 +115,18 @@
               </a>
             </li>
             <li>
-              <a href="addhospital">
-                <i class="fa fa-th"></i> <span>Add Hospital</span> <small class="label pull-right bg-green">new</small>
+              <a href="adduser">
+                <i class="fa fa-th"></i> <span>Add User</span> <small class="label pull-right bg-green">new</small>
               </a>
             </li>
             <li>
-              <a href="udatedetails">
+              <a href="viewuser">
                 <i class="fa fa-th"></i>
-                <span>Update Hospital Details</span>
-                
-              </a>
-            </li>
-            <li>
-              <a href="viewhospital">
-                <i class="fa fa-th"></i>
-                <span>View Hospital</span>
+                <span>View User</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
             </li>
-			<li>
-              <a href="adddoctor">
-                <i class="fa fa-th"></i>
-                <span>Add Doctor</span>
-                <i class="fa fa-angle-left pull-right"></i>
-              </a>
-            </li>
-			<li>
-              <a href="updatedoctor">
-                <i class="fa fa-th"></i>
-                <span>Update Doctor Details</span>
-                <i class="fa fa-angle-left pull-right"></i>
-              </a>
-            </li>
-			<li>
-              <a href="viewdoctors">
-                <i class="fa fa-th"></i>
-                <span>View Doctors</span>
-                <i class="fa fa-angle-left pull-right"></i>
-              </a>
-            </li>
+			
 			</ul>
          </section>   
         <!-- /.sidebar -->
@@ -165,100 +137,60 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-            Doctor Details
-            <small>Please fill in the details</small>
+            Dashboard
+            <small>Control panel</small>
           </h1>
           <ol class="breadcrumb">
-            <li><a href="admin"><i class="fa fa-dashboard"></i>Dashboard</a></li>
+            <li><a href="#"><i class="fa fa-dashboard"></i>Dashboard</a></li>
             
           </ol>
         </section>
 
         <!-- Main content -->
         <section class="content">
+			@if(Session::has('flash_message'))
+			<div class="alert alert-success">
+				{!! Session::get('flash_message') !!}
+			</div>
+			@endif
           <!-- Small boxes (Stat box) -->
           <div class="row">
-            
-            
+            <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <div class="small-box bg-aqua">
+                <div class="inner">
+				<a href="adduser">  
+                  <h3>Add </h3>
+				  <h3>User</h3>
+				  </a>
+                </div>
+                <div class="icon">
+                  <i class="ion ion-bag"></i>
+                </div>
+				<a href="adduser">
+				<p class="small-box-footer">To add a new user <i class="fa fa-arrow-circle-right"></i></p>
+				</a>
+              </div>
+			  
+            </div><!-- ./col -->
+            <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <div class="small-box bg-green">
+                <div class="inner">
+				<a href="viewuser">
+                  <h3>View</h3>
+                  <h3>User</h3>
+				  </a>
+                </div>
+                <div class="icon">
+                  <i class="ion ion-stats-bars"></i>
+                </div>
+                <a href="viewuser" class="small-box-footer">To view all the users registered<i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div><!-- ./col -->
+           
           </div><!-- /.row -->
-          {!! Form::open(array('url' => 'adddoctor')) !!}
-			<div class="form-group has-feedback">
-				  @if($errors->any())
-				<div class="alert alert-danger">
-				@foreach($errors->all() as $error)
-					<p>{!! $error !!}</p>
-				@endforeach
-				</div>
-				@endif
-				
-            <p>
-				<label>Doctor Name</label>
-				<center>
-				{!! Form::text('doctor_name',null,array('class' => 'form-control'))!!}
-				</center>
-			</p>
-            
-			</div>
-			<div class="form-group has-feedback">
-            <p>
-				<label>Specialisation</label>
-				<center>
-				{!! Form::text('specialisation', null, array('class' => 'form-control')) !!}
-				</center>
-			</p>
-            
-			</div>
-			<div class="form-group has-feedback">
-            <p>
-				<label>Address</label>
-				<center>
-				{!! Form::textarea('address', null, array('class' => 'form-control')) !!}
-				</center>
-			</p>
-            
-			</div>
-			<div class="form-group has-feedback">
-            <p>
-				<label>Contact Number</label>
-				<center>
-				{!! Form::text('contact_number',null,array('class' => 'form-control'))!!}
-				</center>
-			</p>
-            
-			</div>
-			<div class="form-group has-feedback">
-            @if($hospitals)
-				<label>Hospital</label>
-				<select class="form-control" name="associated_with">
-					@foreach($hospitals as $hospital)
-						<option  value="{!!$hospital->id!!}">{!!'Hospital ID: '.$hospital->id.' | Hospital Name: '.$hospital->hospital_name!!}</option>
-					@endforeach
-				</select>
-				@endif
-            
-			</div>
-			
-			<div class="form-group has-feedback">
-            <p>
-				
-				{!!Form::label('status','Status of the Doctor :')!!}
-				<br>
-				In:
-				{!! Form::radio('status', 'in',true) !!}
-				<br>
-				Out:
-				{!! Form::radio('status', 'out', false) !!}
-				
-			</p>
-            
-			</div>
-			<center>
-            <div class="col-xs-4">
-              <button type="submit" class="btn btn-primary btn-block btn-flat">Add Details</button>
-            </div>
-			</center><!-- /.col -->
-          </div>
-        {!! Form::close() !!}
+          
 
         </section><!-- /.content -->
       </div><!-- /.content-wrapper -->

@@ -13,6 +13,11 @@
 
 Route::get('login',array('uses' => 'LoginController@showLogin'));
 Route::post('login',array('uses' => 'LoginController@doLogin'));
+
+//For Root
+Route::get('maradmin',array('uses' => 'RootController@loggedIn'));
+
+//For Marketing Admin
 Route::get('admin',array('uses' => 'LoginController@loggedIn'));
 Route::get('logout',array('uses' => 'LoginController@logOut'));
 Route::get('addhospital',array('uses' => 'HospitalController@addHospital'));
@@ -29,4 +34,6 @@ Route::get('editdoctor',array('uses' => 'DoctorController@geteditedDetails'));
 Route::post('editdoctor',array('uses' => 'DoctorController@posttodb'));
 Route::get('viewhospital',array('uses' => 'HospitalController@viewHospital'));
 Route::get('viewdoctors',array('uses' => 'DoctorController@viewDoctor'));
+
+
 

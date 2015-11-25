@@ -37,14 +37,29 @@ class HospitalController extends Controller {
 	 //To return to the view for taking in the entries
 	public function addHospital(){
 		if(Auth::check())
+			if(Auth::user()->role=='MarAdmin')
 			return view('addhospital.addhospital')->with('name',Auth::user()->first_name." ".Auth::user()->last_name);
+			else{
+				$rules = array(
+					'user_name' => 'UnAuthorized Access',
+					'password'  => ' '
+				);
+				return Redirect::to('login')->withErrors($rules)->withInput(Input::except('password'));
+			}
 		else
-			return view('login');
+		{
+			$rules = array(
+					'user_name' => 'Please Login First',
+					'password'  => ' '
+				);
+				return Redirect::to('login')->withErrors($rules)->withInput(Input::except('password'));
+		}
 	}
 	//To write to the database
 	public function addToDb(){
 		if(Auth::check())
 		{
+			if(Auth::user()->role=='MarAdmin'){
 			$rules = array(
 			'hospital_name' => 'required|min:3',
 			'hospital_address'  => 'required|min:3',
@@ -73,50 +88,100 @@ class HospitalController extends Controller {
 				Session::flash('flash_message', 'Hospital Details Sucessfully added!');
 				return Redirect::to('admin');
 			}
+			}
+			else{
+				$rules = array(
+					'user_name' => 'UnAuthorized Access',
+					'password'  => ' '
+				);
+				return Redirect::to('login')->withErrors($rules)->withInput(Input::except('password'));
+			}
 		}
 		else
-			return view('login');
+		{
+			$rules = array(
+					'user_name' => 'Please Login First',
+					'password'  => ' '
+				);
+				return Redirect::to('login')->withErrors($rules)->withInput(Input::except('password'));
+		}
 	}
 	public function getDetails(){
 		if(Auth::check()){
-			
+			if(Auth::user()->role=='MarAdmin'){
 			//getting hospital details from database
 			$hospitals = DB::select('select id,hospital_name from hospital');
 
-			return view('updatehospital.adddetails')->with('hospitals',$hospitals);
+			return view('updatehospital.adddetails')->with('hospitals',$hospitals);}
+			else{
+				$rules = array(
+					'user_name' => 'UnAuthorized Access',
+					'password'  => ' '
+				);
+				return Redirect::to('login')->withErrors($rules)->withInput(Input::except('password'));
+			}
 		}
 		else{
-			return view('login');
+			$rules = array(
+					'user_name' => 'Please Login First',
+					'password'  => ' '
+				);
+				return Redirect::to('login')->withErrors($rules)->withInput(Input::except('password'));
 		}
 	}
 	public function geteditedDetails(){
 		if(Auth::check()){
 #		echo "posted";
+		if(Auth::user()->role=='MarAdmin'){
 		return Redirect::to('updatehospital.updatedetails');
 		}
 		else{
-			return view('login');
+			$rules = array(
+					'user_name' => 'UnAuthorized Access',
+					'password'  => ' '
+				);
+				return Redirect::to('login')->withErrors($rules)->withInput(Input::except('password'));
+		}
+		}
+		else{
+			$rules = array(
+					'user_name' => 'Please Login First',
+					'password'  => ' '
+				);
+				return Redirect::to('login')->withErrors($rules)->withInput(Input::except('password'));
 		}
 		
 	}
 	public function postDetails(){
 		if(Auth::check()){
-		
+		if(Auth::user()->role=='MarAdmin'){
 		$hospital_id = Input::get('hospital_id');
 	#	echo "$hospital_id";
 		$hospital_details=Hospital::find($hospital_id);
 	#	echo "$hospital_details('id')";
 		return view('updatehospital.updatedetails')->with('prevdetails',$hospital_details);
+		}
+		else{
+			$rules = array(
+					'user_name' => 'UnAuthorized Access',
+					'password'  => ' '
+				);
+				return Redirect::to('login')->withErrors($rules)->withInput(Input::except('password'));
+		}
 		
 		}
 		else{
-			return view('login');
+			$rules = array(
+					'user_name' => 'Please Login First',
+					'password'  => ' '
+				);
+				return Redirect::to('login')->withErrors($rules)->withInput(Input::except('password'));
 		}
 		
 	}
 	public function posttodb(){
 		if(Auth::check()){
-			
+		if(Auth::user()->role=='MarAdmin'){
 		$rules = array(
 			'hospital_name' => 'required|min:3',
 			'bed_count' => 'required',
@@ -147,12 +212,25 @@ class HospitalController extends Controller {
 			}
 		}
 		else{
-			return view('login');
+			$rules = array(
+					'user_name' => 'UnAuthorized Access',
+					'password'  => ' '
+				);
+				return Redirect::to('login')->withErrors($rules)->withInput(Input::except('password'));
+		}
+		}
+		else{
+			$rules = array(
+					'user_name' => 'Please Login First',
+					'password'  => ' '
+				);
+				return Redirect::to('login')->withErrors($rules)->withInput(Input::except('password'));
 		}
 		
 	}
 	public function viewHospital(){
 		if(Auth::check()){
+			if(Auth::user()->role=='MarAdmin'){
 			$data=DB::table('hospital')->get();
 			$len=count($data);
 			$id=array();
@@ -162,10 +240,21 @@ class HospitalController extends Controller {
 				$userdata[$x]=User::find($id[$x]);
 			}
 			
-			return view('updatehospital.viewhospital')->with('data',$data)->with('userdata',$userdata);
+			return view('updatehospital.viewhospital')->with('data',$data)->with('userdata',$userdata);}
+			else{
+				$rules = array(
+					'user_name' => 'UnAuthorized Access',
+					'password'  => ' '
+				);
+				return Redirect::to('login')->withErrors($rules)->withInput(Input::except('password'));
+			}
 		}
 		else{
-			return view('login');
+			$rules = array(
+					'user_name' => 'Please Login First',
+					'password'  => ' '
+				);
+				return Redirect::to('login')->withErrors($rules)->withInput(Input::except('password'));
 		}
 	}
 }

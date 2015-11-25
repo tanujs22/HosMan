@@ -22,7 +22,7 @@ class CreateDoctorsTable extends Migration
 			$table->foreign('associated_with')->references('id')->on('hospital');
 			$table->integer('added_by')->unsigned();
 			$table->foreign('added_by')->references('id')->on('users');
-			$table->enum('status', ['active', 'inactive']);
+			$table->enum('status', ['in', 'out']);
             $table->timestamps('modified_on');
         });
     }
