@@ -35,12 +35,27 @@ class LoginController extends Controller {
 	public function loggedIn()
     {
 		if(Auth::check()){
+			if(Auth::user()->role=='MarAdmin'){
 			$user_name=Auth::user()->user_name;
 	//		echo "$user_name";
 			return view('admin')->with('name',Auth::user()->first_name." ".Auth::user()->last_name);
+			}
+			else{
+				$rules = array(
+					'user_name' => 'UnAuthorized Access',
+					'password'  => ' '
+				);
+				return Redirect::to('login')->withErrors($rules)->withInput(Input::except('password'));
+			}
 		}
 		else
-		return Redirect::to('login');
+		{
+			$rules = array(
+					'user_name' => 'Please Login First',
+					'password'  => ' '
+				);
+				return Redirect::to('login')->withErrors($rules)->withInput(Input::except('password'));
+		}
 	}
 	public function logOut()
     {
@@ -79,7 +94,12 @@ class LoginController extends Controller {
 				// redirect them to the secure section or whatever
 				// return Redirect::to('secure');
 				// for now we'll just echo success (even though echoing in a controller is bad)
+				if(Auth::user()->role=='MarAdmin'){
 				return Redirect::to('admin');
+				}
+				if(Auth::user()->role=='root'){
+					return Redirect::to('maradmin');
+				}
 
 			} 
 			else {        

@@ -28,7 +28,8 @@ class UserTableSeeder extends Seeder
 			'first_name' => 'sherlock',
 			'last_name' =>'holmes',
 			'user_name' => 'sherlock',
-			'password' =>Hash::make('password')
+			'password' =>Hash::make('password'),
+			'role' =>'root'
 		));
 	}
 }

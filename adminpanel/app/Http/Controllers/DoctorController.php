@@ -38,16 +38,32 @@ class DoctorController extends Controller {
 	 //To return to the view for taking in the entries
 	public function addDoctor(){
 		if(Auth::check()){
+			if(Auth::user()->role=='MarAdmin'){
 			$hospitals = DB::select('select id,hospital_name from hospital');
 			return view('adddoctor.adddoctor')->with('hospitals',$hospitals);
+			}
+			else{
+				$rules = array(
+					'user_name' => 'UnAuthorized Access',
+					'password'  => ' '
+				);
+				return Redirect::to('login')->withErrors($rules)->withInput(Input::except('password'));
+			}
 		}
 		else
-			return view('login');
+		{
+			$rules = array(
+					'user_name' => 'Please Login First',
+					'password'  => ' '
+				);
+				return Redirect::to('login')->withErrors($rules)->withInput(Input::except('password'));
+		}
 	}
 	//To write to the database
 	public function addToDb(){
 		if(Auth::check())
 		{
+			if(Auth::user()->role=='MarAdmin'){
 			$rules = array(
 			'doctor_name' => 'required|min:3',
 			'address'  => 'required|min:3',
@@ -72,52 +88,100 @@ class DoctorController extends Controller {
 				Session::flash('flash_message', 'Doctor Details Sucessfully added!');
 				return Redirect::to('admin');
 			}
+			}
+			else{
+				$rules = array(
+					'user_name' => 'UnAuthorized Access',
+					'password'  => ' '
+				);
+				return Redirect::to('login')->withErrors($rules)->withInput(Input::except('password'));
+			}
 		}
 		else
-			return view('login');
+		{
+			$rules = array(
+					'user_name' => 'Please Login First',
+					'password'  => ' '
+				);
+				return Redirect::to('login')->withErrors($rules)->withInput(Input::except('password'));
+		}
 	}
 	public function getDetails(){
 		if(Auth::check()){
-			
+			if(Auth::user()->role=='MarAdmin'){
 			//getting hospital details from database
 			$doctors = DB::select('select id,doctor_name from doctors');
 
-			return view('updatedoctor.adddetails')->with('doctors',$doctors);
+			return view('updatedoctor.adddetails')->with('doctors',$doctors);}
+			else{
+				$rules = array(
+					'user_name' => 'UnAuthorized Access',
+					'password'  => ' '
+				);
+				return Redirect::to('login')->withErrors($rules)->withInput(Input::except('password'));
+			}
 		}
 		else{
-			return view('login');
+			$rules = array(
+					'user_name' => 'Please Login First',
+					'password'  => ' '
+				);
+				return Redirect::to('login')->withErrors($rules)->withInput(Input::except('password'));
 		}
 	}
 	public function geteditedDetails(){
 		if(Auth::check()){
 #		echo "posted";
-		return Redirect::to('updatedoctor');
+		if(Auth::user()->role=='MarAdmin'){
+		return Redirect::to('updatedoctor');}
+		else{
+			$rules = array(
+					'user_name' => 'UnAuthorized Access',
+					'password'  => ' '
+				);
+				return Redirect::to('login')->withErrors($rules)->withInput(Input::except('password'));
+		}
 		}
 		else{
-			return view('login');
+			$rules = array(
+					'user_name' => 'Please Login First',
+					'password'  => ' '
+				);
+				return Redirect::to('login')->withErrors($rules)->withInput(Input::except('password'));
 		}
 		
 	}
 	public function postDetails(){
 		if(Auth::check()){
-		
+		if(Auth::user()->role=='MarAdmin'){
 		$doctor_id = Input::get('doctor_id');
 	#	echo "$doctor_id";
 		$doctor_details=Doctor::find($doctor_id);
 	#	echo "$doctor_details->id";
 		$hospitals = DB::select('select id,hospital_name from hospital');
 	#	echo "$hospitals[0]";
-	return view('updatedoctor.updatedetails')->with('prevdetails',$doctor_details)->with('hospitals',$hospitals);
-		
+		return view('updatedoctor.updatedetails')->with('prevdetails',$doctor_details)->with('hospitals',$hospitals);
 		}
 		else{
-			return view('login');
+			$rules = array(
+					'user_name' => 'UnAuthorized Access',
+					'password'  => ' '
+				);
+				return Redirect::to('login')->withErrors($rules)->withInput(Input::except('password'));
+		}
+		}
+		else{
+			$rules = array(
+					'user_name' => 'Please Login First',
+					'password'  => ' '
+				);
+				return Redirect::to('login')->withErrors($rules)->withInput(Input::except('password'));
 		}
 		
 	}
 	public function posttodb(){
 		if(Auth::check()){
-			
+			if(Auth::user()->role=='MarAdmin'){
 		$rules = array(
 			'doctor_name' => 'required|min:3',
 			'address'  => 'required|min:3',
@@ -143,14 +207,27 @@ class DoctorController extends Controller {
 				Session::flash('flash_message', 'Doctor Details Sucessfully added!');
 				return Redirect::to('admin');
 			}
+			}
+			else{
+				$rules = array(
+					'user_name' => 'UnAuthorized Access',
+					'password'  => ' '
+				);
+				return Redirect::to('login')->withErrors($rules)->withInput(Input::except('password'));
+			}
 		}
 		else{
-			return view('login');
+			$rules = array(
+					'user_name' => 'Please Login First',
+					'password'  => ' '
+				);
+				return Redirect::to('login')->withErrors($rules)->withInput(Input::except('password'));
 		}
 		
 	}
 	public function viewDoctor(){
 		if(Auth::check()){
+			if(Auth::user()->role=='MarAdmin'){
 			$data=DB::table('doctors')->get();
 			$len=count($data);
 			$id=array();
@@ -163,10 +240,21 @@ class DoctorController extends Controller {
 				$hospitaldata[$x]=Hospital::find($hosid);
 			}
 			
-			return view('updatedoctor.viewdoctor')->with('data',$data)->with('userdata',$userdata)->with('hospitaldata',$hospitaldata);
+			return view('updatedoctor.viewdoctor')->with('data',$data)->with('userdata',$userdata)->with('hospitaldata',$hospitaldata);}
+			else{
+				$rules = array(
+					'user_name' => 'UnAuthorized Access',
+					'password'  => ' '
+				);
+				return Redirect::to('login')->withErrors($rules)->withInput(Input::except('password'));
+			}
 		}
 		else{
-			return view('login');
+			$rules = array(
+					'user_name' => 'Please Login First',
+					'password'  => ' '
+				);
+				return Redirect::to('login')->withErrors($rules)->withInput(Input::except('password'));
 		}
 	}
 }

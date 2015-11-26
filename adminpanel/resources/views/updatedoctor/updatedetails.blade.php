@@ -232,20 +232,20 @@
 			</div>
 				<label>Status</label>
 				<br>
-				Active:
-				@if($prevdetails->status == 'active')
-					{!! Form::radio('status', 'active',true) !!}
+				In:
+				@if($prevdetails->status == 'in')
+					{!! Form::radio('status', 'in',true) !!}
 				@endif
-				@if($prevdetails->status == 'inactive')
-					{!! Form::radio('status', 'active') !!}
+				@if($prevdetails->status == 'out')
+					{!! Form::radio('status', 'in') !!}
 				@endif
 				<br>
-				Inactive:
-				@if($prevdetails->status == 'active')
-					{!! Form::radio('status', 'inactive') !!}
+				Out:
+				@if($prevdetails->status == 'in')
+					{!! Form::radio('status', 'out') !!}
 				@endif
-				@if($prevdetails->status == 'inactive')
-					{!! Form::radio('status', 'inactive',true) !!}
+				@if($prevdetails->status == 'out')
+					{!! Form::radio('status', 'out',true) !!}
 				@endif
 				
 			
