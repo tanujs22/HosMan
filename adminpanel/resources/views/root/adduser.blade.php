@@ -3,7 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 2 | Dashboard</title>
+    <title>Dashboard</title>
+
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -120,13 +121,13 @@
               </a>
             </li>
             <li>
-              <a href="viewuser">
+              <a href="updateuser">
                 <i class="fa fa-th"></i>
                 <span>View Users</span>
-                <i class="fa fa-angle-left pull-right"></i>
+                
               </a>
             </li>
-			
+            
 			</ul>
          </section>   
         <!-- /.sidebar -->
@@ -137,60 +138,86 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-            Dashboard
-            <small>Control panel</small>
+            User Details
+            <small>Please fill in the details</small>
           </h1>
           <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i>Dashboard</a></li>
+            <li><a href="maradmin"><i class="fa fa-dashboard"></i>Dashboard</a></li>
             
           </ol>
         </section>
 
         <!-- Main content -->
         <section class="content">
-			@if(Session::has('flash_message'))
-			<div class="alert alert-success">
-				{!! Session::get('flash_message') !!}
-			</div>
-			@endif
           <!-- Small boxes (Stat box) -->
           <div class="row">
-            <div class="col-lg-3 col-xs-6">
-              <!-- small box -->
-              <div class="small-box bg-aqua">
-                <div class="inner">
-				<a href="adduser">  
-                  <h3>Add </h3>
-				  <h3>User</h3>
-				  </a>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-bag"></i>
-                </div>
-				<a href="adduser">
-				<p class="small-box-footer">To add a new user <i class="fa fa-arrow-circle-right"></i></p>
-				</a>
-              </div>
-			  
-            </div><!-- ./col -->
-            <div class="col-lg-3 col-xs-6">
-              <!-- small box -->
-              <div class="small-box bg-green">
-                <div class="inner">
-				<a href="viewuser">
-                  <h3>View</h3>
-                  <h3>Users</h3>
-				  </a>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-stats-bars"></i>
-                </div>
-                <a href="viewuser" class="small-box-footer">To view all the users registered<i class="fa fa-arrow-circle-right"></i></a>
-              </div>
-            </div><!-- ./col -->
-           
+            
+            
           </div><!-- /.row -->
-          
+          {!! Form::open(array('url' => 'adduser')) !!}
+			<div class="form-group has-feedback">
+				  @if($errors->any())
+				<div class="alert alert-danger">
+				@foreach($errors->all() as $error)
+					<p>{!! $error !!}</p>
+				@endforeach
+				</div>
+				@endif
+            <p>
+				<label>User Name</label>
+				<center>
+				{!! Form::text('user_name',null,array('class' => 'form-control'))!!}
+				</center>
+			</p>
+			<p>
+				<label>First Name</label>
+				<center>
+				{!! Form::text('first_name',null,array('class' => 'form-control'))!!}
+				</center>
+			</p>
+			<p>
+				<label>Last Name</label>
+				<center>
+				{!! Form::text('last_name',null,array('class' => 'form-control'))!!}
+				</center>
+			</p>
+            
+			</div>
+			
+			<div class="form-group has-feedback">
+            <p>
+				<label>Password</label>
+				<center>
+				{!! Form::text('password1',null,array('class' => 'form-control'))!!}
+				</center>
+			</p>
+            
+			</div>
+			
+			<div class="form-group has-feedback">
+            <p>
+				
+				{!!Form::label('role','Status of the Hospital :')!!}
+				<br>
+				Root:
+				{!! Form::radio('role', 'root',true) !!}
+				<br>
+				Marketing Admin:
+				{!! Form::radio('role', 'MarAdmin', false) !!}
+				<br>
+				Hospital Admin:
+				{!! Form::radio('role', 'HosAdmin', false) !!}
+				
+			</p>
+            
+			</div>
+			<center>
+            <div class="col-xs-4">
+              <button type="submit" class="btn btn-primary btn-block btn-flat">Add User</button>
+            </div>
+			</center><!-- /.col -->
+          </div>
+        {!! Form::close() !!}
 
         </section><!-- /.content -->
       </div><!-- /.content-wrapper -->
