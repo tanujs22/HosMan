@@ -16,6 +16,9 @@ Route::post('login',array('uses' => 'LoginController@doLogin'));
 
 //For Root
 Route::get('maradmin',array('uses' => 'RootController@loggedIn'));
+Route::get('adduser',array('uses' => 'RootController@addUser'));
+Route::post('adduser',array('uses' => 'RootController@addToDb'));
+Route::get('viewuser',array('uses' => 'RootController@viewUser'));
 
 //For Marketing Admin
 Route::get('admin',array('uses' => 'LoginController@loggedIn'));
