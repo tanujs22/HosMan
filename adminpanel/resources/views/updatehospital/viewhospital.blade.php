@@ -170,7 +170,7 @@
             <small>Registered hospitals</small>
           </h1>
           <ol class="breadcrumb">
-            <li><a href="admin"><i class="fa fa-dashboard"></i>Dashboard</a></li>
+<!--             <li><a href="admin"><i class="fa fa-dashboard"></i>Dashboard</a></li> -->
             
           </ol>
         </section>
@@ -263,11 +263,11 @@
 
         
       </div><!-- /.content-wrapper -->
-      <footer class="main-footer">
+       <footer class="main-footer">
         <div class="pull-right hidden-xs">
-          <b>Version</b> 2.3.0
+          <b>Version</b> 0.1
         </div>
-        <strong>Copyright &copy; 2014-2015 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights reserved.
+        <strong>Copyright &copy; 2015 <a href="http://cumbretech.in">Cumbre Technology</a>.</strong> All rights reserved.
       </footer>
 
       <!-- Control Sidebar -->

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 2 | Dashboard</title>
+    <title>Project HosMan | Dashboard</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -114,9 +114,10 @@
                 <i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
             </li>
+
             <li>
               <a href="addhospital">
-                <i class="fa fa-th"></i> <span>Add Hospital</span> <small class="label pull-right bg-green">new</small>
+                <i class="fa fa-th"></i> <span>Add Hospital</span> 
               </a>
             </li>
             <li>
@@ -168,7 +169,7 @@
             <small>Control panel</small>
           </h1>
           <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i>Dashboard</a></li>
+<!--             <li><a href="#"><i class="fa fa-dashboard"></i>Dashboard</a></li> -->
             
           </ol>
         </section>
@@ -282,22 +283,19 @@
       </div><!-- /.content-wrapper -->
       <footer class="main-footer">
         <div class="pull-right hidden-xs">
-          <b>Version</b> 2.3.0
+          <b>Version</b> 0.1
         </div>
-        <strong>Copyright &copy; 2014-2015 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights reserved.
+        <strong>Copyright &copy; 2015 <a href="http://cumbretech.in">Cumbre Technology</a>.</strong> All rights reserved.
       </footer>
 
-      <!-- Control Sidebar -->
-      <aside class="control-sidebar control-sidebar-dark">
-        <!-- Create the tabs -->
-        <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+      <!-- 
+Control Sidebar      <aside class="control-sidebar control-sidebar-dark">
+        Create the tabs        <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
           <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
           <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
         </ul>
-        <!-- Tab panes -->
-        <div class="tab-content">
-          <!-- Home tab content -->
-          <div class="tab-pane" id="control-sidebar-home-tab">
+        Tab panes        <div class="tab-content">
+          Home tab content          <div class="tab-pane" id="control-sidebar-home-tab">
             <h3 class="control-sidebar-heading">Recent Activity</h3>
             <ul class="control-sidebar-menu">
               <li>
@@ -336,8 +334,7 @@
                   </div>
                 </a>
               </li>
-            </ul><!-- /.control-sidebar-menu -->
-
+            </ul>/.control-sidebar-menu
             <h3 class="control-sidebar-heading">Tasks Progress</h3>
             <ul class="control-sidebar-menu">
               <li>
@@ -384,12 +381,15 @@
                   </div>
                 </a>
               </li>
-            </ul><!-- /.control-sidebar-menu -->
+            </ul>/.control-sidebar-menu
+ -->
 
-          </div><!-- /.tab-pane -->
-          <!-- Stats tab content -->
-          <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div><!-- /.tab-pane -->
-          <!-- Settings tab content -->
+<!-- 
+
+          </div><!~~ /.tab-pane ~~>
+          <!~~ Stats tab content ~~>
+          <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div><!~~ /.tab-pane ~~>
+          <!~~ Settings tab content ~~>
           <div class="tab-pane" id="control-sidebar-settings-tab">
             <form method="post">
               <h3 class="control-sidebar-heading">General Settings</h3>
@@ -401,7 +401,7 @@
                 <p>
                   Some information about this general settings option
                 </p>
-              </div><!-- /.form-group -->
+              </div><!~~ /.form-group ~~>
 
               <div class="form-group">
                 <label class="control-sidebar-subheading">
@@ -411,7 +411,7 @@
                 <p>
                   Other sets of options are available
                 </p>
-              </div><!-- /.form-group -->
+              </div><!~~ /.form-group ~~>
 
               <div class="form-group">
                 <label class="control-sidebar-subheading">
@@ -421,7 +421,7 @@
                 <p>
                   Allow the user to show his name in blog posts
                 </p>
-              </div><!-- /.form-group -->
+              </div><!~~ /.form-group ~~>
 
               <h3 class="control-sidebar-heading">Chat Settings</h3>
 
@@ -430,25 +430,26 @@
                   Show me as online
                   <input type="checkbox" class="pull-right" checked>
                 </label>
-              </div><!-- /.form-group -->
+              </div><!~~ /.form-group ~~>
 
               <div class="form-group">
                 <label class="control-sidebar-subheading">
                   Turn off notifications
                   <input type="checkbox" class="pull-right">
                 </label>
-              </div><!-- /.form-group -->
+              </div><!~~ /.form-group ~~>
 
               <div class="form-group">
                 <label class="control-sidebar-subheading">
                   Delete chat history
                   <a href="javascript::;" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>
                 </label>
-              </div><!-- /.form-group -->
+              </div><!~~ /.form-group ~~>
             </form>
-          </div><!-- /.tab-pane -->
+          </div><!~~ /.tab-pane ~~>
         </div>
-      </aside><!-- /.control-sidebar -->
+      </aside><!~~ /.control-sidebar ~~>
+ -->
       <!-- Add the sidebar's background. This div must be placed
            immediately after the control sidebar -->
       <div class="control-sidebar-bg"></div>
