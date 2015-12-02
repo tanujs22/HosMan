@@ -117,7 +117,7 @@
             </li>
             <li>
               <a href="addhospital">
-                <i class="fa fa-th"></i> <span>Add Hospital</span> 
+                <i class="fa fa-th"></i> <span>Add Hospital</span> <small class="label pull-right bg-green">new</small>
               </a>
             </li>
             <li>
@@ -144,7 +144,7 @@
 			<li>
               <a href="updatedoctor">
                 <i class="fa fa-th"></i>
-                <span>Update Doctor Details</span>
+                <span>Update Doctor</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
             </li>
@@ -155,6 +155,26 @@
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
             </li>
+			@if(Auth::user()->role=='root')
+				
+            <li>
+              <a href="maradmin">
+                <i class="fa fa-dashboard"></i> <span>Root Admin Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
+              </a>
+            </li>
+            <li>
+              <a href="adduser">
+                <i class="fa fa-th"></i> <span>Add Admin</span> <small class="label pull-right bg-green">new</small>
+              </a>
+            </li>
+            <li>
+              <a href="viewuser">
+                <i class="fa fa-th"></i>
+                <span>View Admins</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+            </li>
+			@endif
 			</ul>
          </section>   
         <!-- /.sidebar -->
@@ -169,7 +189,7 @@
             <small>Please fill in the details</small>
           </h1>
           <ol class="breadcrumb">
-<!--             <li><a href="admin"><i class="fa fa-dashboard"></i>Dashboard</a></li> -->
+            <li><a href="admin"><i class="fa fa-dashboard"></i>Dashboard</a></li>
             
           </ol>
         </section>
@@ -266,9 +286,9 @@
       </div><!-- /.content-wrapper -->
       <footer class="main-footer">
         <div class="pull-right hidden-xs">
-          <b>Version</b> 0.1
+          <b>Version</b> 2.3.0
         </div>
-        <strong>Copyright &copy; 2015 <a href="http://almsaeedstudio.com">Cumbre Technology</a>.</strong> All rights reserved.
+        <strong>Copyright &copy; 2014-2015 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights reserved.
       </footer>
 
       <!-- Control Sidebar -->

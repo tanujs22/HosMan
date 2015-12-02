@@ -116,13 +116,13 @@
             </li>
             <li>
               <a href="adduser">
-                <i class="fa fa-th"></i> <span>Add User</span> <small class="label pull-right bg-green">new</small>
+                <i class="fa fa-th"></i> <span>Add Admin</span> <small class="label pull-right bg-green">new</small>
               </a>
             </li>
             <li>
               <a href="viewuser">
                 <i class="fa fa-th"></i>
-                <span>View Users</span>
+                <span>View Admins</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
             </li>
@@ -161,7 +161,7 @@
                 <div class="inner">
 				<a href="adduser">  
                   <h3>Add </h3>
-				  <h3>User</h3>
+				  <h3>Admin</h3>
 				  </a>
                 </div>
                 <div class="icon">
@@ -179,16 +179,30 @@
                 <div class="inner">
 				<a href="viewuser">
                   <h3>View</h3>
-                  <h3>Users</h3>
+                  <h3>Admins</h3>
 				  </a>
                 </div>
                 <div class="icon">
                   <i class="ion ion-stats-bars"></i>
                 </div>
-                <a href="viewuser" class="small-box-footer">To view all the users registered<i class="fa fa-arrow-circle-right"></i></a>
+                <a href="viewuser" class="small-box-footer">To view all the admins registered<i class="fa fa-arrow-circle-right"></i></a>
               </div>
             </div><!-- ./col -->
-           
+           <div class="col-lg-3 col-xs-6">
+              <!-- small box -->
+              <div class="small-box bg-yellow">
+                <div class="inner">
+				<a href="admin">
+                  <h3>Admin</h3>
+				  <h3>Dashboard</h3>
+                  </a>
+                </div>
+                <div class="icon">
+                  <i class="ion ion-person-add"></i>
+                </div>
+                <a href="admin" class="small-box-footer">To view registered hospitals <i class="fa fa-arrow-circle-right"></i></a>
+              </div>
+            </div><!-- ./col -->
           </div><!-- /.row -->
           
 
@@ -196,9 +210,9 @@
       </div><!-- /.content-wrapper -->
       <footer class="main-footer">
         <div class="pull-right hidden-xs">
-          <b>Version</b> 0.1
+          <b>Version</b> 2.3.0
         </div>
-        <strong>Copyright &copy; 2015 <a href="http://cumbretech.in">Cumbre Technology</a>.</strong> All rights reserved.
+        <strong>Copyright &copy; 2014-2015 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights reserved.
       </footer>
 
       <!-- Control Sidebar -->

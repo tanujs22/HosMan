@@ -37,7 +37,7 @@ class HospitalController extends Controller {
 	 //To return to the view for taking in the entries
 	public function addHospital(){
 		if(Auth::check())
-			if(Auth::user()->role=='MarAdmin')
+			if(Auth::user()->role=='MarAdmin'||Auth::user()->role=='root')
 			return view('addhospital.addhospital')->with('name',Auth::user()->first_name." ".Auth::user()->last_name);
 			else{
 				$rules = array(
@@ -59,7 +59,7 @@ class HospitalController extends Controller {
 	public function addToDb(){
 		if(Auth::check())
 		{
-			if(Auth::user()->role=='MarAdmin'){
+			if(Auth::user()->role=='MarAdmin'||Auth::user()->role=='root'){
 			$rules = array(
 			'hospital_name' => 'required|min:3',
 			'hospital_address'  => 'required|min:3',
@@ -108,7 +108,7 @@ class HospitalController extends Controller {
 	}
 	public function getDetails(){
 		if(Auth::check()){
-			if(Auth::user()->role=='MarAdmin'){
+			if(Auth::user()->role=='MarAdmin'||Auth::user()->role=='root'){
 			//getting hospital details from database
 			$hospitals = DB::select('select id,hospital_name from hospital');
 
@@ -132,7 +132,7 @@ class HospitalController extends Controller {
 	public function geteditedDetails(){
 		if(Auth::check()){
 #		echo "posted";
-		if(Auth::user()->role=='MarAdmin'){
+		if(Auth::user()->role=='MarAdmin'||Auth::user()->role=='root'){
 		return Redirect::to('updatehospital.updatedetails');
 		}
 		else{
@@ -154,7 +154,7 @@ class HospitalController extends Controller {
 	}
 	public function postDetails(){
 		if(Auth::check()){
-		if(Auth::user()->role=='MarAdmin'){
+		if(Auth::user()->role=='MarAdmin'||Auth::user()->role=='root'){
 		$hospital_id = Input::get('hospital_id');
 	#	echo "$hospital_id";
 		$hospital_details=Hospital::find($hospital_id);
@@ -181,7 +181,7 @@ class HospitalController extends Controller {
 	}
 	public function posttodb(){
 		if(Auth::check()){
-		if(Auth::user()->role=='MarAdmin'){
+		if(Auth::user()->role=='MarAdmin'||Auth::user()->role=='root'){
 		$rules = array(
 			'hospital_name' => 'required|min:3',
 			'bed_count' => 'required',
@@ -230,7 +230,7 @@ class HospitalController extends Controller {
 	}
 	public function viewHospital(){
 		if(Auth::check()){
-			if(Auth::user()->role=='MarAdmin'){
+			if(Auth::user()->role=='MarAdmin'||Auth::user()->role=='root'){
 			$data=DB::table('hospital')->get();
 			$len=count($data);
 			$id=array();
