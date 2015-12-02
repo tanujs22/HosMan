@@ -35,7 +35,7 @@ class LoginController extends Controller {
 	public function loggedIn()
     {
 		if(Auth::check()){
-			if(Auth::user()->role=='MarAdmin'){
+			if(Auth::user()->role=='MarAdmin'||Auth::user()->role=='root'){
 			$user_name=Auth::user()->user_name;
 	//		echo "$user_name";
 			return view('admin')->with('name',Auth::user()->first_name." ".Auth::user()->last_name);

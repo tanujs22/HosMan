@@ -117,13 +117,13 @@
             </li>
             <li>
               <a href="adduser">
-                <i class="fa fa-th"></i> <span>Add User</span> <small class="label pull-right bg-green">new</small>
+                <i class="fa fa-th"></i> <span>Add Admin</span> <small class="label pull-right bg-green">new</small>
               </a>
             </li>
             <li>
               <a href="updateuser">
                 <i class="fa fa-th"></i>
-                <span>View Users</span>
+                <span>View Admins</span>
                 
               </a>
             </li>
@@ -138,7 +138,7 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-            User Details
+            Admin Details
             <small>Please fill in the details</small>
           </h1>
           <ol class="breadcrumb">
@@ -221,11 +221,11 @@
 
         </section><!-- /.content -->
       </div><!-- /.content-wrapper -->
-        <footer class="main-footer">
+      <footer class="main-footer">
         <div class="pull-right hidden-xs">
-          <b>Version</b> 0.1
+          <b>Version</b> 2.3.0
         </div>
-        <strong>Copyright &copy; 2015 <a href="http://cumbretech.in">Cumbre Technology</a>.</strong> All rights reserved.
+        <strong>Copyright &copy; 2014-2015 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights reserved.
       </footer>
 
       <!-- Control Sidebar -->

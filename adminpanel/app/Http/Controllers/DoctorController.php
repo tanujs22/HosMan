@@ -38,7 +38,7 @@ class DoctorController extends Controller {
 	 //To return to the view for taking in the entries
 	public function addDoctor(){
 		if(Auth::check()){
-			if(Auth::user()->role=='MarAdmin'){
+			if(Auth::user()->role=='MarAdmin'||Auth::user()->role=='root'){
 			$hospitals = DB::select('select id,hospital_name from hospital');
 			return view('adddoctor.adddoctor')->with('hospitals',$hospitals);
 			}
@@ -63,7 +63,7 @@ class DoctorController extends Controller {
 	public function addToDb(){
 		if(Auth::check())
 		{
-			if(Auth::user()->role=='MarAdmin'){
+			if(Auth::user()->role=='MarAdmin'||Auth::user()->role=='root'){
 			$rules = array(
 			'doctor_name' => 'required|min:3',
 			'address'  => 'required|min:3',
@@ -108,7 +108,7 @@ class DoctorController extends Controller {
 	}
 	public function getDetails(){
 		if(Auth::check()){
-			if(Auth::user()->role=='MarAdmin'){
+			if(Auth::user()->role=='MarAdmin'||Auth::user()->role=='root'){
 			//getting hospital details from database
 			$doctors = DB::select('select id,doctor_name from doctors');
 
@@ -132,7 +132,7 @@ class DoctorController extends Controller {
 	public function geteditedDetails(){
 		if(Auth::check()){
 #		echo "posted";
-		if(Auth::user()->role=='MarAdmin'){
+		if(Auth::user()->role=='MarAdmin'||Auth::user()->role=='root'){
 		return Redirect::to('updatedoctor');}
 		else{
 			$rules = array(
@@ -153,7 +153,7 @@ class DoctorController extends Controller {
 	}
 	public function postDetails(){
 		if(Auth::check()){
-		if(Auth::user()->role=='MarAdmin'){
+		if(Auth::user()->role=='MarAdmin'||Auth::user()->role=='root'){
 		$doctor_id = Input::get('doctor_id');
 	#	echo "$doctor_id";
 		$doctor_details=Doctor::find($doctor_id);
@@ -181,7 +181,7 @@ class DoctorController extends Controller {
 	}
 	public function posttodb(){
 		if(Auth::check()){
-			if(Auth::user()->role=='MarAdmin'){
+			if(Auth::user()->role=='MarAdmin'||Auth::user()->role=='root'){
 		$rules = array(
 			'doctor_name' => 'required|min:3',
 			'address'  => 'required|min:3',
@@ -227,7 +227,7 @@ class DoctorController extends Controller {
 	}
 	public function viewDoctor(){
 		if(Auth::check()){
-			if(Auth::user()->role=='MarAdmin'){
+			if(Auth::user()->role=='MarAdmin'||Auth::user()->role=='root'){
 			$data=DB::table('doctors')->get();
 			$len=count($data);
 			$id=array();

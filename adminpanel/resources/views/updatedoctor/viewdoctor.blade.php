@@ -156,6 +156,26 @@
                 
               </a>
             </li>
+			@if(Auth::user()->role=='root')
+				
+            <li>
+              <a href="maradmin">
+                <i class="fa fa-dashboard"></i> <span>Root Admin Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
+              </a>
+            </li>
+            <li>
+              <a href="adduser">
+                <i class="fa fa-th"></i> <span>Add Admin</span> <small class="label pull-right bg-green">new</small>
+              </a>
+            </li>
+            <li>
+              <a href="viewuser">
+                <i class="fa fa-th"></i>
+                <span>View Admins</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+            </li>
+			@endif
 			</ul>
          </section>   
         <!-- /.sidebar -->
@@ -170,7 +190,7 @@
             <small>Registered doctors</small>
           </h1>
           <ol class="breadcrumb">
-<!--             <li><a href="admin"><i class="fa fa-dashboard"></i>Dashboard</a></li> -->
+            <li><a href="admin"><i class="fa fa-dashboard"></i>Dashboard</a></li>
             
           </ol>
         </section>
@@ -252,7 +272,9 @@
 										<br>
 										Name:
 										{!! $userdata1->first_name.' '.$userdata1->last_name!!}
-										
+										<br>
+										Admin Role:
+										{!! $userdata1->role!!}
 										</span>
 									
 									</span>
@@ -277,11 +299,11 @@
 
         
       </div><!-- /.content-wrapper -->
-       <footer class="main-footer">
+      <footer class="main-footer">
         <div class="pull-right hidden-xs">
-          <b>Version</b> 0.1
+          <b>Version</b> 2.3.0
         </div>
-        <strong>Copyright &copy; 2015 <a href="http://cumbretech.in">Cumbre Technology</a>.</strong> All rights reserved.
+        <strong>Copyright &copy; 2014-2015 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights reserved.
       </footer>
 
       <!-- Control Sidebar -->
