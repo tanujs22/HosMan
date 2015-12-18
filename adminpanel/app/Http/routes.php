@@ -1,5 +1,6 @@
 <?php
 
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -37,6 +38,27 @@ Route::get('editdoctor',array('uses' => 'DoctorController@geteditedDetails'));
 Route::post('editdoctor',array('uses' => 'DoctorController@posttodb'));
 Route::get('viewhospital',array('uses' => 'HospitalController@viewHospital'));
 Route::get('viewdoctors',array('uses' => 'DoctorController@viewDoctor'));
+
+
+
+//Front Pages Routes
+
+Route::get('home', 'FrontController@home');
+Route::get('about','FrontController@about');
+Route::get('doctors','FrontController@list_doctor');
+Route::get('specialty','FrontController@list_specialty');
+Route::get('hospitals', 'FrontController@list_hospital');	
+Route::get('hospital/item/{id}', 'FrontController@item_view');
+Route::get('doctors/item/{id}', 'FrontController@doctor_view');
+
+
+
+
+
+
+
+
+
 
 
 
