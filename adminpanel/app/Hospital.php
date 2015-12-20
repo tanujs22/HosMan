@@ -28,7 +28,7 @@ class Hospital extends Model implements AuthenticatableContract,
      *
      * @var array
      */
-    protected $fillable = [ 'hospital_name','hospital_address','contact_number', 'longitude','latitude','status'];
+    protected $fillable = [ 'hospital_name','category_id','number', 'longitude','latitude','status'];
 
     /**
      * The attributes excluded from the model's JSON form.

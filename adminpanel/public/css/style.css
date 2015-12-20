@@ -1,0 +1,475 @@
+
+body{
+font-family: Lora,'Times New Roman',serif;
+font-size:15px;
+color:#404040;
+height: 100%;
+min-width: 100%;
+overflow-x: hidden;
+}
+
+/*   Navbar style  */
+
+.navbar-static-top {
+
+  margin-bottom: 0px;
+  margin-top: 0px;
+  height: 60px;
+  background-color:white;
+  
+}
+
+.navbar-default .navbar-nav >li >a{
+
+	color:#477bab;
+	font-size: 1.3em;
+  margin-bottom: 0px;
+
+}
+
+.navbar>.container-fluid .navbar-brand{
+
+    color:#477bab;
+    font-size: 2em;
+}
+
+.dropdown-menu{
+
+ background-color:#e7e7e7;
+ height: auto;
+ max-height: 200px;
+ overflow-x: hidden;
+
+}
+
+/*  End Navbar style  */
+
+
+
+
+/*  Banner Head in the others pages  */
+
+.intro-header{
+ 
+  background:no-repeat center;
+  background-size:cover;
+  background-attachment:scroll;
+  -webkit-background-size:cover;
+  -moz-background-size:cover;
+  -o-background-size:cover;
+  margin-bottom:50px;
+  display:block;
+  height:200px;
+  min-width:100%; 
+  margin:0 -110px 10px;
+  /*After create an include of head, the banner got smaller
+  put margin -110, and now worked.. not sure about it!!*/
+}
+
+/* Banner Head   */
+ .site-heading h1{
+
+  font-family:lora,'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+  padding-top: 40px;
+  padding-left:60px; 
+  text-align:center;
+  color:#337ab7;
+ font-weight:600;
+ font-size: 60px;
+ font-style: bold;
+
+}
+
+
+
+
+
+ /*  Boxes  Search  */
+
+  .box{
+
+   width: 100%;
+  }
+
+  .box-gray{
+
+    background:#f0f0f0;
+    padding: 20px 20px 30px;
+  }
+
+  .box-gray h4{
+
+    margin-bottom: 20px;
+    margin-left:0px;
+    font-size: 1.6em;
+    text-align: center;
+  }
+
+  .box-gray  i{
+
+   margin-bottom: 20px;
+   margin-left:125px;
+  }
+
+  .box-gray  p{
+    
+   text-align: center;
+   margin-bottom: 20px;
+   margin-left:10px;
+  }
+
+  .box-bottom{
+
+    padding: 20px 0;
+    text-align: center;
+  }
+
+
+  .box-bottom a{
+
+  color: #fff;
+  font-weight: 700;
+  }
+
+  .box-bottom a:hover{
+
+    color: #477bab;
+    text-decoration: none;
+  }
+
+   .box-bottom {
+
+  background:#68A4C4;
+}
+
+.icon{
+
+ padding-left: 15px;
+
+}
+
+
+/*END OF BOXES */
+
+
+.img-circle{
+
+ margin-left: 80px;
+}
+
+
+
+
+/* Footer Style  */
+
+
+footer{
+  padding:50px 0 0 0;
+  background:#68A4C4;
+  margin-top: -2px;
+  padding-top: 30px;
+  padding-bottom: 20px;
+  color:#f0f0f0;
+}
+
+
+.link-list a:hover {
+  color:#d6cbcb;
+  text-decoration: none;
+}
+
+footer address {
+ line-height:1.3em;
+}
+
+
+#sub-footer{
+  text-shadow:none;
+  color:#f5f5f5;
+  padding:0;
+  padding-top:30px;
+  margin:20px 0 0 0;
+}
+
+#sub-footer p{
+  margin:0;
+  padding:0;
+}
+
+
+
+footer .widgetheading {
+  position: relative;
+}
+
+ul.link-list{
+  margin:0;
+  padding:0;
+  list-style:none;
+}
+
+ul.link-list li{
+  margin:0;
+  padding:2px 0 2px 0;
+  list-style:none;
+}
+
+footer ul.link-list li a{
+  color:#fff;
+}
+
+
+
+
+
+  /* End of footer Style  */
+
+
+*=========================
+  Social media Icons
+ ================= */
+
+/* footer social icons */
+ul.social-network {
+
+    list-style: none;
+    display: inline;
+    margin-left:0 !important;
+    padding-right: 0;
+  }
+
+ul.social-network li {
+    display: inline;
+    margin-left:0;
+    padding-right: 15;
+}
+
+
+/* footer social icons */
+.social-network a.icoEmail:hover {
+    background-color: #F56505;
+}
+.social-network a.icoFacebook:hover {
+    background-color:#3B5998;
+}
+.social-network a.icoTwitter:hover {
+    background-color:#33ccff;
+}
+.social-network a.icoGoogle:hover {
+    background-color:#BD3518;
+}
+.social-network a.icoVimeo:hover {
+    background-color:#0590B8;
+}
+.social-network a.icoLinkedin:hover {
+    background-color:#007bb7;
+}
+.social-network a.icoEmail:hover i, .social-network a.icoFacebook:hover i, .social-network a.icoTwitter:hover i,
+.social-network a.icoGoogle:hover i, .social-network a.icoVimeo:hover i, .social-network a.icoLinkedin:hover i {
+    color:#fff;
+}
+a.socialIcon:hover, .socialHoverClass {
+    color:#44BCDD;
+}
+
+.social-circle li a {
+    display:inline-block;
+    position:relative;
+    margin:0 auto 0 auto;
+    -moz-border-radius:50%;
+    -webkit-border-radius:50%;
+    border-radius:50%;
+    text-align:center;
+    width: 40px;
+    height: 40px;
+    font-size:20px;
+    padding-top: 5px;
+}
+.social-circle li i {
+    margin:0;
+    line-height:30px;
+    text-align: center;
+}
+
+.social-circle li a:hover i, .triggeredHover {
+    -moz-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -ms--transform: rotate(360deg);
+    transform: rotate(360deg);
+    -webkit-transition: all 0.2s;
+    -moz-transition: all 0.2s;
+    -o-transition: all 0.2s;
+    -ms-transition: all 0.2s;
+    transition: all 0.2s;
+}
+.social-circle i {
+    color: #fff;
+    -webkit-transition: all 0.8s;
+    -moz-transition: all 0.8s;
+    -o-transition: all 0.8s;
+    -ms-transition: all 0.8s;
+    transition: all 0.8s;
+}
+
+.social-circle a{
+ background-color: #D3D3D3;   
+}
+
+
+*=========================
+  end of Icons
+ ================= */
+  
+
+  
+
+
+/* PULSE  NAV-BAR ICONS */
+
+@-webkit-keyframes pulse {
+  0% {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+
+  50% {
+    -webkit-transform: scale(0.8);
+    transform: scale(0.8);
+  }
+
+  100% {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+
+  50% {
+    -webkit-transform: scale(0.8);
+    -ms-transform: scale(0.8);
+    transform: scale(0.8);
+  }
+
+  100% {
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+}
+
+.faa-pulse.animated.faa-slow,
+.faa-pulse.animated-hover.faa-slow:hover,
+.faa-parent.animated-hover:hover > .faa-pulse.faa-slow {
+  -webkit-animation: pulse 3s linear infinite;
+  animation: pulse 3s linear infinite;
+}
+
+
+/* BOX THAT DISPLAY DOCTOR AND HOSPITAL INFORMATION*/
+
+.jumbotron{
+ 
+ margin-bottom:80px;
+ margin-top:60px;
+ width:50%;
+ display:block;
+ margin-left:auto;
+ margin-right:auto;
+   border-radius: 50px;
+ -webkit-border-radius: 50px;
+}
+
+
+.center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+
+
+/* SPECIALTY TABLE  */
+
+
+  #tbody{
+  height:350px;
+  overflow-y:auto;
+  width:500px;
+  display: block; 
+  margin-left:auto;
+  margin-right:auto;
+  margin-top:40px;
+  margin-bottom:30px;
+  border-radius: 50px;
+ -webkit-border-radius: 50px;
+ 
+  }
+
+
+  #report { 
+ 
+  width: 500px;
+  height: 350px;
+ }
+
+
+  #report ul li {
+   margin:10px 10px; 
+   padding:0px;
+   list-style: none;
+ }
+
+
+  #report th { 
+  background:#EEEEEE; 
+  color:#7CB8E2; 
+  padding:10px;
+  margin-left:50px;
+  text-align:center;
+  padding-bottom: 20px;
+}
+ 
+
+
+  #report td {
+  background:#7CB8E2; 
+  padding:13px 40px; 
+ }
+
+
+  #report tr.odd td {
+   background:#EEEEEE;
+   cursor:pointer; 
+ }
+
+  #report div.arrow {
+    width:16px;
+    height:16px;
+    display:block;
+  }
+
+  #report div.up { 
+  background-position:0px 0px;
+}
+
+/* END SPECIALTY TABLE  */
+
+
+
+
+
+
+
+
+
+
+
+
+
