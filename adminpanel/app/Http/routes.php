@@ -43,7 +43,7 @@ Route::get('viewdoctors',array('uses' => 'DoctorController@viewDoctor'));
 
 //Front Pages Routes
 
-Route::get('home', 'FrontController@home');
+Route::get('/', 'FrontController@home');
 Route::get('about','FrontController@about');
 Route::get('doctors','FrontController@list_doctor');
 Route::get('specialty','FrontController@list_specialty');
