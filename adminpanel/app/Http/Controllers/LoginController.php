@@ -34,22 +34,27 @@ class LoginController extends Controller {
 	}
 	public function loggedIn()
     {
+		
 		if(Auth::check()){
 			if(Auth::user()->role=='MarAdmin'||Auth::user()->role=='root'){
 			$user_name=Auth::user()->user_name;
 	//		echo "$user_name";
 			return view('admin')->with('name',Auth::user()->first_name." ".Auth::user()->last_name);
 			}
-			else{
-				$rules = array(
+			
+			else
+		{
+			
+			$rules = array(
 					'user_name' => 'UnAuthorized Access',
 					'password'  => ' '
 				);
 				return Redirect::to('login')->withErrors($rules)->withInput(Input::except('password'));
-			}
+		}
 		}
 		else
 		{
+			
 			$rules = array(
 					'user_name' => 'Please Login First',
 					'password'  => ' '
@@ -59,7 +64,9 @@ class LoginController extends Controller {
 	}
 	public function logOut()
     {
+		
 		Auth::logout();
+		
 		return Redirect::to('login');
 	}
 	public function doLogin()
@@ -99,6 +106,9 @@ class LoginController extends Controller {
 				}
 				if(Auth::user()->role=='root'){
 					return Redirect::to('maradmin');
+				}
+				if(Auth::user()->role=='HosAdmin'){
+					return Redirect::to('hosadmin');
 				}
 
 			} 
