@@ -120,14 +120,24 @@
                 <i class="fa fa-th"></i> <span>Add Admin</span> <small class="label pull-right bg-green">new</small>
               </a>
             </li>
+			<li>
+              <a href="addhosadmin">
+                <i class="fa fa-th"></i> <span>Add Hospital Admin</span> <small class="label pull-right bg-green">new</small>
+              </a>
+            </li>
+            
             <li>
-              <a href="updateuser">
+              <a href="viewuser">
                 <i class="fa fa-th"></i>
                 <span>View Admins</span>
                 
               </a>
             </li>
-            
+            <li>
+              <a href="viewhosadmin">
+                <i class="fa fa-th"></i> <span>View Hospital Admin</span> <small class="label pull-right bg-green">new</small>
+              </a>
+            </li>
 			</ul>
          </section>   
         <!-- /.sidebar -->
@@ -204,16 +214,14 @@
 				<br>
 				Marketing Admin:
 				{!! Form::radio('role', 'MarAdmin', false) !!}
-				<br>
-				Hospital Admin:
-				{!! Form::radio('role', 'HosAdmin', false) !!}
+				
 				
 			</p>
             
 			</div>
 			<center>
             <div class="col-xs-4">
-              <button type="submit" class="btn btn-primary btn-block btn-flat">Add User</button>
+              <button type="submit" class="btn btn-primary btn-block btn-flat">Add Admin</button>
             </div>
 			</center><!-- /.col -->
           </div>

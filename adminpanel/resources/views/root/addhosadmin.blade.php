@@ -3,7 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 2 | Dashboard</title>
+    <title>Dashboard</title>
+
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -125,13 +126,13 @@
               </a>
             </li>
             <li>
-              <a href="viewuser">
+              <a href="updateuser">
                 <i class="fa fa-th"></i>
                 <span>View Admins</span>
-                <i class="fa fa-angle-left pull-right"></i>
+                
               </a>
             </li>
-			<li>
+            <li>
               <a href="viewhosadmin">
                 <i class="fa fa-th"></i> <span>View Hospital Admin</span> <small class="label pull-right bg-green">new</small>
               </a>
@@ -146,105 +147,80 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-            Dashboard
-            <small>Control panel</small>
+            Admin Details
+            <small>Please fill in the details</small>
           </h1>
           <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i>Dashboard</a></li>
+            <li><a href="maradmin"><i class="fa fa-dashboard"></i>Dashboard</a></li>
             
           </ol>
         </section>
 
         <!-- Main content -->
         <section class="content">
-			@if(Session::has('flash_message'))
-			<div class="alert alert-success">
-				{!! Session::get('flash_message') !!}
-			</div>
-			@endif
           <!-- Small boxes (Stat box) -->
           <div class="row">
-		  
-            <div class="col-lg-3 col-xs-6">
-              <!-- small box -->
-              <div class="small-box bg-aqua">
-                <div class="inner">
-				<a href="adduser">  
-                  <h3>Add </h3>
-				  <h3>Admin</h3>
-				  </a>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-bag"></i>
-                </div>
-				<a href="adduser" class="small-box-footer">
-				To add a new user <i class="fa fa-arrow-circle-right"></i>
-				</a>
-              </div>
-			</div>
-			 <div class="col-lg-3 col-xs-6">    
-			  <div class="small-box bg-aqua">
-                <div class="inner">
-				<a href="addhosadmin">  
-                  <h3>Add </h3>
-				  <h3>Hospital Admin</h3>
-				  </a>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-bag"></i>
-                </div>
-				<a href="addhosadmin" class="small-box-footer">
-				To add a new user <i class="fa fa-arrow-circle-right"></i>
-				</a>
-              </div>
-            </div><!-- ./col -->
-            <div class="col-lg-3 col-xs-6">
-              <!-- small box -->
-              <div class="small-box bg-green">
-                <div class="inner">
-				<a href="viewuser">
-                  <h3>View</h3>
-                  <h3>Admins</h3>
-				  </a>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-stats-bars"></i>
-                </div>
-                <a href="viewuser" class="small-box-footer">To view all the admins registered<i class="fa fa-arrow-circle-right"></i></a>
-              </div>
-            </div><!-- ./col -->
-			 <div class="col-lg-3 col-xs-6">
-              <!-- small box -->
-              <div class="small-box bg-green">
-                <div class="inner">
-				<a href="viewhosadmin">
-                  <h3>View</h3>
-                  <h3>Hospital Admin</h3>
-				  </a>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-stats-bars"></i>
-                </div>
-                <a href="viewhosadmin" class="small-box-footer">To view all the admins registered<i class="fa fa-arrow-circle-right"></i></a>
-              </div>
-            </div><!-- ./col -->
-           <div class="col-lg-3 col-xs-6">
-              <!-- small box -->
-              <div class="small-box bg-yellow">
-                <div class="inner">
-				<a href="admin">
-                  <h3>Admin</h3>
-				  <h3>Dashboard</h3>
-                  </a>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-person-add"></i>
-                </div>
-                <a href="admin" class="small-box-footer">To view registered hospitals <i class="fa fa-arrow-circle-right"></i></a>
-              </div>
-            </div><!-- ./col -->
+            
+            
           </div><!-- /.row -->
-          
+          {!! Form::open(array('url' => 'addhosadmin')) !!}
+			<div class="form-group has-feedback">
+				  @if($errors->any())
+				<div class="alert alert-danger">
+				@foreach($errors->all() as $error)
+					<p>{!! $error !!}</p>
+				@endforeach
+				</div>
+				@endif
+            <p>
+				<label>User Name</label>
+				<center>
+				{!! Form::text('user_name',null,array('class' => 'form-control'))!!}
+				</center>
+			</p>
+			<p>
+				<label>First Name</label>
+				<center>
+				{!! Form::text('first_name',null,array('class' => 'form-control'))!!}
+				</center>
+			</p>
+			<p>
+				<label>Last Name</label>
+				<center>
+				{!! Form::text('last_name',null,array('class' => 'form-control'))!!}
+				</center>
+			</p>
+            
+			</div>
+			
+			<div class="form-group has-feedback">
+            <p>
+				<label>Password</label>
+				<center>
+				{!! Form::text('password1',null,array('class' => 'form-control'))!!}
+				</center>
+			</p>
+            
+			</div>
+			
+			<div class="form-group has-feedback">
+            @if($hospitals)
+				<label>Hospital</label>
+				<select class="form-control" name="hospital_id">
+					@foreach($hospitals as $hospital)
+						<option  value="{!!$hospital->id!!}">{!!'Hospital ID: '.$hospital->id.' | Hospital Name: '.$hospital->hospital_name!!}</option>
+					@endforeach
+				</select>
+				@endif
+            
+			</div>
+			<center>
+            <div class="col-xs-4">
+              <button type="submit" class="btn btn-primary btn-block btn-flat">Add Hospital Admin</button>
+            </div>
+			</center><!-- /.col -->
+          </div>
+        {!! Form::close() !!}
 
         </section><!-- /.content -->
       </div><!-- /.content-wrapper -->

@@ -99,6 +99,7 @@ class HospitalController extends Controller {
 		}
 		else
 		{
+			
 			$rules = array(
 					'user_name' => 'Please Login First',
 					'password'  => ' '

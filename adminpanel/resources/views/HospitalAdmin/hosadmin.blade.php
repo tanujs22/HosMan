@@ -43,9 +43,9 @@
       <header class="main-header">
         
           <!-- mini logo for sidebar mini 50x50 pixels -->
-          <span class="logo-mini"><b>A</b>P</span>
+          <span class="logo-mini"><b>H</b>P</span>
           <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg"><b>Root</b>Panel</span>
+          <span class="logo-lg"><b>Hospital Admin</b>Panel</span>
         
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top" role="navigation">
@@ -73,7 +73,7 @@
                     <img src="dist/img/avatar3.png" class="img-circle" alt="User Image">
                     <p>
 					{!! $name !!}
-                      <small>Root Team Member</small>
+                      <small>Hospital Admin</small>
                     </p>
                   </li>
                   
@@ -110,18 +110,26 @@
           <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
             <li>
-              <a href="maradmin">
+              <a href="hosadmin">
                 <i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
+              </a>
+            </li>
+            <li>
+              <a href="doctorstatus">
+                <i class="fa fa-th"></i> <span>Doctor Status</span> <small class="label pull-right bg-green">new</small>
+              </a>
+            </li>
+            
+			@if(Auth::user()->role=='root')
+				
+            <li>
+              <a href="maradmin">
+                <i class="fa fa-dashboard"></i> <span>Root Admin Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
             </li>
             <li>
               <a href="adduser">
                 <i class="fa fa-th"></i> <span>Add Admin</span> <small class="label pull-right bg-green">new</small>
-              </a>
-            </li>
-			<li>
-              <a href="addhosadmin">
-                <i class="fa fa-th"></i> <span>Add Hospital Admin</span> <small class="label pull-right bg-green">new</small>
               </a>
             </li>
             <li>
@@ -131,11 +139,7 @@
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
             </li>
-			<li>
-              <a href="viewhosadmin">
-                <i class="fa fa-th"></i> <span>View Hospital Admin</span> <small class="label pull-right bg-green">new</small>
-              </a>
-            </li>
+			@endif
 			</ul>
          </section>   
         <!-- /.sidebar -->
@@ -162,91 +166,11 @@
 				{!! Session::get('flash_message') !!}
 			</div>
 			@endif
-          <!-- Small boxes (Stat box) -->
-          <div class="row">
-		  
-            <div class="col-lg-3 col-xs-6">
-              <!-- small box -->
-              <div class="small-box bg-aqua">
-                <div class="inner">
-				<a href="adduser">  
-                  <h3>Add </h3>
-				  <h3>Admin</h3>
-				  </a>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-bag"></i>
-                </div>
-				<a href="adduser" class="small-box-footer">
-				To add a new user <i class="fa fa-arrow-circle-right"></i>
-				</a>
-              </div>
-			</div>
-			 <div class="col-lg-3 col-xs-6">    
-			  <div class="small-box bg-aqua">
-                <div class="inner">
-				<a href="addhosadmin">  
-                  <h3>Add </h3>
-				  <h3>Hospital Admin</h3>
-				  </a>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-bag"></i>
-                </div>
-				<a href="addhosadmin" class="small-box-footer">
-				To add a new user <i class="fa fa-arrow-circle-right"></i>
-				</a>
-              </div>
-            </div><!-- ./col -->
-            <div class="col-lg-3 col-xs-6">
-              <!-- small box -->
-              <div class="small-box bg-green">
-                <div class="inner">
-				<a href="viewuser">
-                  <h3>View</h3>
-                  <h3>Admins</h3>
-				  </a>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-stats-bars"></i>
-                </div>
-                <a href="viewuser" class="small-box-footer">To view all the admins registered<i class="fa fa-arrow-circle-right"></i></a>
-              </div>
-            </div><!-- ./col -->
-			 <div class="col-lg-3 col-xs-6">
-              <!-- small box -->
-              <div class="small-box bg-green">
-                <div class="inner">
-				<a href="viewhosadmin">
-                  <h3>View</h3>
-                  <h3>Hospital Admin</h3>
-				  </a>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-stats-bars"></i>
-                </div>
-                <a href="viewhosadmin" class="small-box-footer">To view all the admins registered<i class="fa fa-arrow-circle-right"></i></a>
-              </div>
-            </div><!-- ./col -->
-           <div class="col-lg-3 col-xs-6">
-              <!-- small box -->
-              <div class="small-box bg-yellow">
-                <div class="inner">
-				<a href="admin">
-                  <h3>Admin</h3>
-				  <h3>Dashboard</h3>
-                  </a>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-person-add"></i>
-                </div>
-                <a href="admin" class="small-box-footer">To view registered hospitals <i class="fa fa-arrow-circle-right"></i></a>
-              </div>
-            </div><!-- ./col -->
-          </div><!-- /.row -->
-          
-
-        </section><!-- /.content -->
+			<center><p>BED COUNT</p></center>
+			<button type="submit" class="btn btn-default">
+                        <i class="fa fa-plus"></i>
+                    </button>
+          </section>
       </div><!-- /.content-wrapper -->
       <footer class="main-footer">
         <div class="pull-right hidden-xs">

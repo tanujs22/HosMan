@@ -15,11 +15,17 @@
 Route::get('login',array('uses' => 'LoginController@showLogin'));
 Route::post('login',array('uses' => 'LoginController@doLogin'));
 
+Route::get('hospitaladmin',array('uses' => 'HosAdminLoginController@showLogin'));
+Route::post('hospitaladmin',array('uses' => 'HosAdminLoginController@doLogin'));
+
 //For Root
 Route::get('maradmin',array('uses' => 'RootController@loggedIn'));
 Route::get('adduser',array('uses' => 'RootController@addUser'));
 Route::post('adduser',array('uses' => 'RootController@addToDb'));
 Route::get('viewuser',array('uses' => 'RootController@viewUser'));
+Route::get('addhosadmin',array('uses' => 'RootController@addHosAdmin'));
+Route::post('addhosadmin',array('uses' => 'RootController@addHosAdminToDb'));
+Route::get('viewhosadmin',array('uses' => 'RootController@viewHosAdmin'));
 
 //For Marketing Admin
 Route::get('admin',array('uses' => 'LoginController@loggedIn'));
@@ -39,6 +45,8 @@ Route::post('editdoctor',array('uses' => 'DoctorController@posttodb'));
 Route::get('viewhospital',array('uses' => 'HospitalController@viewHospital'));
 Route::get('viewdoctors',array('uses' => 'DoctorController@viewDoctor'));
 
+//Hospital Admin
+Route::get('hosadmin',array('uses' => 'HospitalAdminController@loggedIn'));
 
 
 //Front Pages Routes

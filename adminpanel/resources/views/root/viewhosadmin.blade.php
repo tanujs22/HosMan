@@ -1,9 +1,11 @@
+
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 2 | Dashboard</title>
+    <title>Dashboard</title>
+
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -65,14 +67,14 @@
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <img src="dist/img/avatar3.png" class="user-image" alt="User Image">
-                  <span class="hidden-xs">{!! $name !!}</span>
+                  <span class="hidden-xs">{!! Auth::user()->first_name.' '.Auth::user()->last_name !!}</span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
                   <li class="user-header">
                     <img src="dist/img/avatar3.png" class="img-circle" alt="User Image">
                     <p>
-					{!! $name !!}
+					{!! Auth::user()->first_name.' '.Auth::user()->last_name !!}
                       <small>Root Team Member</small>
                     </p>
                   </li>
@@ -101,7 +103,7 @@
               <img src="dist/img/avatar3.png" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-              <p>{!! $name !!}</p>
+              <p>{!! Auth::user()->first_name.' '.Auth::user()->last_name !!}</p>
               <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
           </div>
@@ -111,12 +113,12 @@
             <li class="header">MAIN NAVIGATION</li>
             <li>
               <a href="maradmin">
-                <i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
+                <i class="fa fa-dashboard"></i> <span>Dashboard</span> 
               </a>
             </li>
             <li>
               <a href="adduser">
-                <i class="fa fa-th"></i> <span>Add Admin</span> <small class="label pull-right bg-green">new</small>
+                <i class="fa fa-th"></i> <span>Add Admin</span> 
               </a>
             </li>
 			<li>
@@ -124,14 +126,15 @@
                 <i class="fa fa-th"></i> <span>Add Hospital Admin</span> <small class="label pull-right bg-green">new</small>
               </a>
             </li>
+            
             <li>
               <a href="viewuser">
                 <i class="fa fa-th"></i>
                 <span>View Admins</span>
-                <i class="fa fa-angle-left pull-right"></i>
+                
               </a>
             </li>
-			<li>
+            <li>
               <a href="viewhosadmin">
                 <i class="fa fa-th"></i> <span>View Hospital Admin</span> <small class="label pull-right bg-green">new</small>
               </a>
@@ -146,107 +149,90 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-            Dashboard
-            <small>Control panel</small>
+            User List
+            <small>Registered Admins</small>
           </h1>
           <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i>Dashboard</a></li>
+            <li><a href="maradmin"><i class="fa fa-dashboard"></i>Dashboard</a></li>
             
           </ol>
         </section>
 
         <!-- Main content -->
         <section class="content">
-			@if(Session::has('flash_message'))
-			<div class="alert alert-success">
-				{!! Session::get('flash_message') !!}
-			</div>
-			@endif
           <!-- Small boxes (Stat box) -->
           <div class="row">
-		  
-            <div class="col-lg-3 col-xs-6">
-              <!-- small box -->
-              <div class="small-box bg-aqua">
-                <div class="inner">
-				<a href="adduser">  
-                  <h3>Add </h3>
-				  <h3>Admin</h3>
-				  </a>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-bag"></i>
-                </div>
-				<a href="adduser" class="small-box-footer">
-				To add a new user <i class="fa fa-arrow-circle-right"></i>
-				</a>
-              </div>
-			</div>
-			 <div class="col-lg-3 col-xs-6">    
-			  <div class="small-box bg-aqua">
-                <div class="inner">
-				<a href="addhosadmin">  
-                  <h3>Add </h3>
-				  <h3>Hospital Admin</h3>
-				  </a>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-bag"></i>
-                </div>
-				<a href="addhosadmin" class="small-box-footer">
-				To add a new user <i class="fa fa-arrow-circle-right"></i>
-				</a>
-              </div>
-            </div><!-- ./col -->
-            <div class="col-lg-3 col-xs-6">
-              <!-- small box -->
-              <div class="small-box bg-green">
-                <div class="inner">
-				<a href="viewuser">
-                  <h3>View</h3>
-                  <h3>Admins</h3>
-				  </a>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-stats-bars"></i>
-                </div>
-                <a href="viewuser" class="small-box-footer">To view all the admins registered<i class="fa fa-arrow-circle-right"></i></a>
-              </div>
-            </div><!-- ./col -->
-			 <div class="col-lg-3 col-xs-6">
-              <!-- small box -->
-              <div class="small-box bg-green">
-                <div class="inner">
-				<a href="viewhosadmin">
-                  <h3>View</h3>
-                  <h3>Hospital Admin</h3>
-				  </a>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-stats-bars"></i>
-                </div>
-                <a href="viewhosadmin" class="small-box-footer">To view all the admins registered<i class="fa fa-arrow-circle-right"></i></a>
-              </div>
-            </div><!-- ./col -->
-           <div class="col-lg-3 col-xs-6">
-              <!-- small box -->
-              <div class="small-box bg-yellow">
-                <div class="inner">
-				<a href="admin">
-                  <h3>Admin</h3>
-				  <h3>Dashboard</h3>
-                  </a>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-person-add"></i>
-                </div>
-                <a href="admin" class="small-box-footer">To view registered hospitals <i class="fa fa-arrow-circle-right"></i></a>
-              </div>
-            </div><!-- ./col -->
+            
+            
           </div><!-- /.row -->
-          
+          <div class="form-group has-feedback">
+		  @if($errors->any())
+			<div class="alert alert-danger">
+				@foreach($errors->all() as $error)
+					<p>{!! $error !!}</p>
+				@endforeach
+			</div>
+			@endif
+			
+			<label> <t> DETAILS</label>
+			
+			<br>
+            <p>	
+			<div class="form-group has-feedback">
+				@if($data)
+					<table class="table table-striped table-bordered">
+						<thead>
+							<tr>
+								<th>User Id</th>
+								<th>User Name</th>
+								<th>First Name </th>
+								<th>Last Name</th>
+								<th>Hospital</th>
+								<th>Created At</th>
+							</tr>
+						</thead>
+					<tbody>
+						<?php $x=0; ?>
+						@foreach($data as $entry)
+							<tr>
+								<td>{!! $entry->id !!}</td>
+								<td>{!! $entry->user_name !!}</td>
+								<td>{!! $entry->first_name !!}</td>
+								<td>{!! $entry->last_name !!}</td>
+								<td>
+									<span class="showonhover">
+									<a href="#"> {!! $entry->hospital_id !!} </a>
+									
+										<span class="hovertext">
+										
+										<?php $hosdata1=$hospitaldata[$x]; ?>
+											
+										Hospital Name:
+										{!! $hosdata1->hospital_name!!}
+										
+										
+										</span>
+									
+									</span>
+								</td>
+								<td>{!! $entry->created_at !!}</td>
+							</tr>
+						@endforeach
+					</tbody>	
+					
+					</table>
+				@endif
+				@if(!($data))
+					<p>Sorry, no data available in the database.</p>
+				@endif
+			</div>
+			</p>
+            
+			</div>
+			
+         
 
-        </section><!-- /.content -->
+        
       </div><!-- /.content-wrapper -->
       <footer class="main-footer">
         <div class="pull-right hidden-xs">

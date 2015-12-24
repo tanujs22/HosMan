@@ -121,14 +121,24 @@
                 <i class="fa fa-th"></i> <span>Add Admin</span> 
               </a>
             </li>
+			<li>
+              <a href="addhosadmin">
+                <i class="fa fa-th"></i> <span>Add Hospital Admin</span> <small class="label pull-right bg-green">new</small>
+              </a>
+            </li>
+            
             <li>
-              <a href="viewusers">
+              <a href="viewuser">
                 <i class="fa fa-th"></i>
                 <span>View Admins</span>
                 
               </a>
             </li>
-            
+            <li>
+              <a href="viewhosadmin">
+                <i class="fa fa-th"></i> <span>View Hospital Admin</span> <small class="label pull-right bg-green">new</small>
+              </a>
+            </li>
 			</ul>
          </section>   
         <!-- /.sidebar -->
