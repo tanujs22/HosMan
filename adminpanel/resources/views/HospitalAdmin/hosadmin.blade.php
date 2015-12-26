@@ -161,15 +161,73 @@
 
         <!-- Main content -->
         <section class="content">
+		
 			@if(Session::has('flash_message'))
 			<div class="alert alert-success">
 				{!! Session::get('flash_message') !!}
 			</div>
 			@endif
-			<center><p>BED COUNT</p></center>
+			
+			<center><h3><b>BED COUNT</b></h3></center>
+			<br>
+			<center><p>{!! 	$count;!!}</p></center>
+			<center>
+			<p>{!! Form::open(array('url' => 'addbedcount')) !!}
 			<button type="submit" class="btn btn-default">
                         <i class="fa fa-plus"></i>
                     </button>
+			{!! Form::close() !!}
+			{!! Form::open(array('url' => 'decreasebedcount')) !!}
+			<button type="submit" class="btn btn-default">
+                        <i class="fa fa-minus"></i>
+                    </button>
+			{!! Form::close() !!}</p>
+			</center>
+			<center><h3><b>HOSPITAL STATUS</b></h3></center>
+			<br>
+			@if($status=='active')
+			<font color="green">
+			<center><p>{!! 	$status;!!}</p></center>
+			</font>
+			@endif
+			@if($status=='inactive')
+			<font color="red">
+			<center><p>{!! 	$status;!!}</p></center>
+			</font>
+			@endif
+			
+			<center>
+			
+			
+			@if($status=='active')
+			<p>{!! Form::open(array('url' => 'changestatusactive')) !!}
+			<button type="button" class="btn btn-default" style="color:green">
+                        <i class="fa fa-plus">  Active</i>
+                    </button>
+			{!! Form::close() !!}
+			
+			{!! Form::open(array('url' => 'changestatusinactive')) !!}
+			<button type="submit" class="btn btn-default" style="color:red">
+                        <i class="fa fa-minus">  Inactive</i>
+                    </button>
+			{!! Form::close() !!}</p>
+			@endif
+			
+			@if($status=='inactive')
+			<p>{!! Form::open(array('url' => 'changestatusactive')) !!}
+			<button type="submit" class="btn btn-default" style="color:green">
+                        <i class="fa fa-plus">  Active</i>
+                    </button>
+			{!! Form::close() !!}
+			
+			{!! Form::open(array('url' => 'changestatusinactive')) !!}
+			<button type="button" class="btn btn-default" style="color:red">
+                        <i class="fa fa-minus">  Inactive</i>
+                    </button>
+			{!! Form::close() !!}</p>
+			@endif
+			
+			</center>
           </section>
       </div><!-- /.content-wrapper -->
       <footer class="main-footer">
