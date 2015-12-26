@@ -47,6 +47,10 @@ Route::get('viewdoctors',array('uses' => 'DoctorController@viewDoctor'));
 
 //Hospital Admin
 Route::get('hosadmin',array('uses' => 'HospitalAdminController@loggedIn'));
+Route::post('addbedcount',array('uses' => 'HospitalAdminController@increaseBedCount'));
+Route::post('decreasebedcount',array('uses' => 'HospitalAdminController@decreaseBedCount'));
+Route::post('changestatusactive',array('uses' => 'HospitalAdminController@statusActive'));
+Route::post('changestatusinactive',array('uses' => 'HospitalAdminController@statusInactive'));
 
 
 //Front Pages Routes

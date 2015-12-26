@@ -37,8 +37,14 @@ class HospitalAdminController extends Controller {
 	 //To return to the view for taking in the entries
 	public function loggedIn(){
 		if(Auth::check())
-			if(Auth::user()->role=='HosAdmin')
-			return view('HospitalAdmin.hosadmin')->with('name',Auth::user()->first_name." ".Auth::user()->last_name);
+			if(Auth::user()->role=='HosAdmin'){
+				$user_name=Auth::user()->id;
+				$id=DB::table('hospitaladmin')->where('user_id',$user_name)->value('hospital_id');
+				$count=DB::table('hospital')->where('id',$id)->value('bed_count');
+				$status=DB::table('hospital')->where('id',$id)->value('status');
+				
+	return view('HospitalAdmin.hosadmin')->with('name',Auth::user()->first_name." ".Auth::user()->last_name)->with('count',$count)->with('status',$status);
+	}
 			else{
 				$rules = array(
 					'user_name' => 'UnAuthorized Access',
@@ -55,5 +61,118 @@ class HospitalAdminController extends Controller {
 				return Redirect::to('login')->withErrors($rules)->withInput(Input::except('password'));
 		}
 	}
-	
+	public function increaseBedCount(){
+		if(Auth::check())
+			if(Auth::user()->role=='HosAdmin'){
+				$id=DB::table('hospitaladmin')->where('user_id',Auth::user()->id)->value('hospital_id');
+				$count=DB::table('hospital')->where('id',$id)->value('bed_count');
+				$count=$count+1;
+				DB::table('hospital')->where('id',$id)->update(['bed_count'=>$count]);
+				$status=DB::table('hospital')->where('id',$id)->value('status');
+			return view('HospitalAdmin.hosadmin')->with('name',Auth::user()->first_name." ".Auth::user()->last_name)->with('count',$count)->with('status',$status);}
+			else{
+				$rules = array(
+					'user_name' => 'UnAuthorized Access',
+					'password'  => ' '
+				);
+				return Redirect::to('login')->withErrors($rules)->withInput(Input::except('password'));
+			}
+		else
+		{
+			$rules = array(
+					'user_name' => 'Please Login First',
+					'password'  => ' '
+				);
+				return Redirect::to('login')->withErrors($rules)->withInput(Input::except('password'));
+		}
+	}
+	public function decreaseBedCount(){
+		if(Auth::check())
+			if(Auth::user()->role=='HosAdmin'){
+				$id=DB::table('hospitaladmin')->where('user_id',Auth::user()->id)->value('hospital_id');
+				$count=DB::table('hospital')->where('id',$id)->value('bed_count');
+				$count=$count-1;
+				$status=DB::table('hospital')->where('id',$id)->value('status');
+				if($count>=0){
+				DB::table('hospital')->where('id',$id)->update(['bed_count'=>$count]);
+				return view('HospitalAdmin.hosadmin')->with('name',Auth::user()->first_name." ".Auth::user()->last_name)->with('count',$count)->with('status',$status);}
+				else{
+					count+1;
+					$rules = array(
+					'user_name' => 'Bed Count cannot be negative',
+					'password'  => ' '
+				);
+					return view('HospitalAdmin.hosadmin')->with('name',Auth::user()->first_name." ".Auth::user()->last_name)->with('count',$count)->with('status',$status)->withErrors($rules);
+				}
+			}
+			else{
+				$rules = array(
+					'user_name' => 'UnAuthorized Access',
+					'password'  => ' '
+				);
+				return Redirect::to('login')->withErrors($rules)->withInput(Input::except('password'));
+			}
+		else
+		{
+			$rules = array(
+					'user_name' => 'Please Login First',
+					'password'  => ' '
+				);
+				return Redirect::to('login')->withErrors($rules)->withInput(Input::except('password'));
+		}
+	}
+	public function statusActive(){
+		if(Auth::check())
+			if(Auth::user()->role=='HosAdmin'){
+				$user_name=Auth::user()->id;
+				$id=DB::table('hospitaladmin')->where('user_id',$user_name)->value('hospital_id');
+				$count=DB::table('hospital')->where('id',$id)->value('bed_count');
+				DB::table('hospital')->where('id',$id)->update(['status'=>'active']);
+				$status=DB::table('hospital')->where('id',$id)->value('status');
+				return view('HospitalAdmin.hosadmin')->with('name',Auth::user()->first_name." ".Auth::user()->last_name)->with('count',$count)->with('status',$status);
+				
+			}
+			else{
+				$rules = array(
+					'user_name' => 'UnAuthorized Access',
+					'password'  => ' '
+				);
+				return Redirect::to('login')->withErrors($rules)->withInput(Input::except('password'));
+			}
+		else
+		{
+			$rules = array(
+					'user_name' => 'Please Login First',
+					'password'  => ' '
+				);
+				return Redirect::to('login')->withErrors($rules)->withInput(Input::except('password'));
+		}
+	}
+	public function statusInactive(){
+		if(Auth::check())
+			if(Auth::user()->role=='HosAdmin'){
+				$user_name=Auth::user()->id;
+				$id=DB::table('hospitaladmin')->where('user_id',$user_name)->value('hospital_id');
+				$count=DB::table('hospital')->where('id',$id)->value('bed_count');
+				DB::table('hospital')->where('id',$id)->update(['status'=>'inactive']);
+				$status=DB::table('hospital')->where('id',$id)->value('status');
+				return view('HospitalAdmin.hosadmin')->with('name',Auth::user()->first_name." ".Auth::user()->last_name)->with('count',$count)->with('status',$status);
+				
+			}
+			else{
+				$rules = array(
+					'user_name' => 'UnAuthorized Access',
+					'password'  => ' '
+				);
+				return Redirect::to('login')->withErrors($rules)->withInput(Input::except('password'));
+			}
+		else
+		{
+			$rules = array(
+					'user_name' => 'Please Login First',
+					'password'  => ' '
+				);
+				return Redirect::to('login')->withErrors($rules)->withInput(Input::except('password'));
+		}
+	}
 }
