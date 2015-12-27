@@ -51,6 +51,8 @@ Route::post('addbedcount',array('uses' => 'HospitalAdminController@increaseBedCo
 Route::post('decreasebedcount',array('uses' => 'HospitalAdminController@decreaseBedCount'));
 Route::post('changestatusactive',array('uses' => 'HospitalAdminController@statusActive'));
 Route::post('changestatusinactive',array('uses' => 'HospitalAdminController@statusInactive'));
+Route::get('doctorstatus',array('uses' => 'HospitalAdminController@showDoctorStatus'));
+Route::post('changestatus',array('uses' => 'HospitalAdminController@changeDoctorStatus'));
 
 
 //Front Pages Routes
