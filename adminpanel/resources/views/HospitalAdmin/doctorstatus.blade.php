@@ -1,11 +1,9 @@
-
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Dashboard</title>
-
+    <title>AdminLTE 2 | Dashboard</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -45,9 +43,9 @@
       <header class="main-header">
         
           <!-- mini logo for sidebar mini 50x50 pixels -->
-          <span class="logo-mini"><b>A</b>P</span>
+          <span class="logo-mini"><b>H</b>P</span>
           <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg"><b>Root</b>Panel</span>
+          <span class="logo-lg"><b>Hospital Admin</b>Panel</span>
         
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top" role="navigation">
@@ -67,15 +65,15 @@
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <img src="dist/img/avatar3.png" class="user-image" alt="User Image">
-                  <span class="hidden-xs">{!! Auth::user()->first_name.' '.Auth::user()->last_name !!}</span>
+                  <span class="hidden-xs">{!! $name !!}</span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
                   <li class="user-header">
                     <img src="dist/img/avatar3.png" class="img-circle" alt="User Image">
                     <p>
-					{!! Auth::user()->first_name.' '.Auth::user()->last_name !!}
-                      <small>Root Team Member</small>
+					{!! $name !!}
+                      <small>Hospital Admin</small>
                     </p>
                   </li>
                   
@@ -103,7 +101,7 @@
               <img src="dist/img/avatar3.png" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-              <p>{!! Auth::user()->first_name.' '.Auth::user()->last_name !!}</p>
+              <p>{!! $name !!}</p>
               <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
           </div>
@@ -112,33 +110,36 @@
           <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
             <li>
+              <a href="hosadmin">
+                <i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
+              </a>
+            </li>
+            <li>
+              <a href="doctorstatus">
+                <i class="fa fa-th"></i> <span>Doctor Status</span> <small class="label pull-right bg-green">new</small>
+              </a>
+            </li>
+            
+			@if(Auth::user()->role=='root')
+				
+            <li>
               <a href="maradmin">
-                <i class="fa fa-dashboard"></i> <span>Dashboard</span> 
+                <i class="fa fa-dashboard"></i> <span>Root Admin Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
             </li>
             <li>
               <a href="adduser">
-                <i class="fa fa-th"></i> <span>Add Admin</span> 
+                <i class="fa fa-th"></i> <span>Add Admin</span> <small class="label pull-right bg-green">new</small>
               </a>
             </li>
-			<li>
-              <a href="addhosadmin">
-                <i class="fa fa-th"></i> <span>Add Hospital Admin</span> <small class="label pull-right bg-green">new</small>
-              </a>
-            </li>
-            
             <li>
               <a href="viewuser">
                 <i class="fa fa-th"></i>
                 <span>View Admins</span>
-                
+                <i class="fa fa-angle-left pull-right"></i>
               </a>
             </li>
-            <li>
-              <a href="viewhosadmin">
-                <i class="fa fa-th"></i> <span>View Hospital Admin</span> <small class="label pull-right bg-green">new</small>
-              </a>
-            </li>
+			@endif
 			</ul>
          </section>   
         <!-- /.sidebar -->
@@ -148,32 +149,25 @@
       <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-          <h1>
-            User List
-            <small>Registered Admins</small>
-          </h1>
+
           <ol class="breadcrumb">
-            <li><a href="maradmin"><i class="fa fa-dashboard"></i>Dashboard</a></li>
+            <li><a href="#"><i class="fa fa-dashboard"></i>Dashboard</a></li>
             
           </ol>
         </section>
 
         <!-- Main content -->
         <section class="content">
-          <!-- Small boxes (Stat box) -->
-          <div class="row">
-            
-            
-          </div><!-- /.row -->
-          <div class="form-group has-feedback">
-		  @if($errors->any())
-			<div class="alert alert-danger">
-				@foreach($errors->all() as $error)
-					<p>{!! $error !!}</p>
-				@endforeach
+		
+			@if(Session::has('flash_message'))
+			<div class="alert alert-success">
+				{!! Session::get('flash_message') !!}
 			</div>
 			@endif
-			
+			<h1>
+            Doctor Status
+            <small>You can change the doctor status here</small>
+			</h1>
 			<label> <t> DETAILS</label>
 			
 			<br>
@@ -183,25 +177,30 @@
 					<table class="table table-striped table-bordered">
 						<thead>
 							<tr>
-								<th>User Id</th>
-								<th>User Name</th>
-								<th>First Name </th>
-								<th>Last Name</th>
-								<th>Role</th>
-								<th>Created At</th>
+							
+								<th>Doctor Id</th>
+								<th>Doctor Name</th>
+								<th>Specialisation</th>
+								<th>Status</th>
 							</tr>
 						</thead>
 					<tbody>
-						<?php $x=0; ?>
+						
 						@foreach($data as $entry)
+						 {!! Form::open(array('url' => 'changestatus')) !!}
+						<input type="hidden" name="doctor_id" value="{!!$entry->id!!}">
 							<tr>
 								<td>{!! $entry->id !!}</td>
-								<td>{!! $entry->user_name !!}</td>
-								<td>{!! $entry->first_name !!}</td>
-								<td>{!! $entry->last_name !!}</td>
-								<td>{!! $entry->role !!}</td>
-								<td>{!! $entry->created_at !!}</td>
+								<td>{!! $entry->doctor_name !!}</td>
+								<td>{!! $entry->specialisation !!}</td>
+								@if($entry->status=='in')
+									<td style="color:green">{!! $entry->status !!}</td>
+								@else
+									<td style="color:red">{!! $entry->status !!}</td>
+								@endif
+								<td><button type="submit"  class="btn btn-primary btn-block btn-flat">Change Status</td>
 							</tr>
+							{!! Form::close() !!}
 						@endforeach
 					</tbody>	
 					
@@ -212,12 +211,8 @@
 				@endif
 			</div>
 			</p>
-            
-			</div>
 			
-         
-
-        
+          </section>
       </div><!-- /.content-wrapper -->
       <footer class="main-footer">
         <div class="pull-right hidden-xs">
